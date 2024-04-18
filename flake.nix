@@ -79,23 +79,38 @@
           ln -s ${plugins}/* $out/nvim/lua
         '';
 
+        neovimWithExtraPackages = let 
+          packages = import ./get-packages.nix {inherit pkgs;};
+        in
+        pkgs.symlinkJoin {
+          name = "neovimWithExtraPackages";
+          meta.mainProgram = "nvim";
+          paths = [ pkgs.neovim ];
+          buildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/nvim \
+              --prefix PATH : ${pkgs.lib.makeBinPath packages}
+          '';
+        };
+
         neovimWrapped = let
           environment = import ./get-env-vars.nix {inherit pkgs;};
           environmentFiles = import ./get-env-files.nix {inherit pkgs;};
         in
           pkgs.writeShellScriptBin "nvim" ''
-            export XDG_CONFIG_HOME="${neovimConfig}"
-
             ${environment}
             ${environmentFiles}
 
-            ${neovim.packages.${system}.neovim}/bin/nvim "$@"
+            ${pkgs.lib.getExe neovimWithExtraPackages} \
+              --clean \
+              --cmd 'set rtp+=${neovimConfig}/nvim/' \
+              -u ${neovimConfig}/nvim/init.lua "$@"
           '';
       in {
         packages.default = neovimWrapped;
         apps.default = {
           type = "app";
-          program = "${neovimWrapped}/bin/nvim";
+          program = pkgs.lib.getExe neovimWrapped;
         };
       }
     );

@@ -1,12 +1,15 @@
 {pkgs}: {
+  packages = [
+  ];
+
   environment = {
-    snoozer = "simonwjackson";
-    cruizernh = "simonwjackson";
   };
 
   environmentFiles = [
-    "/a/b/c"
-    "/d/e"
+  ];
+
+  extraPackages = [
+    pkgs.cowsay
   ];
 
   replace = {
