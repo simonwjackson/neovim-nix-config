@@ -5,11 +5,6 @@
       url = "github:NixOS/nixpkgs";
     };
 
-    neovim = {
-      url = "github:neovim/neovim/stable?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-utils.url = "github:numtide/flake-utils";
 
     lazy-nvim = {
@@ -37,11 +32,13 @@
   outputs = {
     self,
     nixpkgs,
-    neovim,
     flake-utils,
     ...
   } @ inputs:
-    flake-utils.lib.eachDefaultSystem (
+    {
+      nixosModules.default = import ./module.nix inputs;
+    }
+    // flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {
           inherit system;
@@ -71,42 +68,18 @@
           ];
         };
 
-        plugins = pkgs.callPackage ./plugins.nix {};
-
-        neovimConfig = pkgs.runCommandNoCC "neovimConfig" {} ''
-          mkdir -p $out/nvim/lua
-          cp -r ${self}/config/* $out/nvim/
-          ln -s ${plugins}/* $out/nvim/lua
-        '';
-
-        neovimWithExtraPackages = let 
-          packages = import ./get-packages.nix {inherit pkgs;};
-        in
-        pkgs.symlinkJoin {
-          name = "neovimWithExtraPackages";
-          meta.mainProgram = "nvim";
-          paths = [ pkgs.neovim ];
-          buildInputs = [ pkgs.makeWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/nvim \
-              --prefix PATH : ${pkgs.lib.makeBinPath packages}
-          '';
+        neovimWrapped = pkgs.callPackage ./neovimWrapped.nix {
+          inherit pkgs self;
         };
-
-        neovimWrapped = let
-          environment = import ./get-env-vars.nix {inherit pkgs;};
-          environmentFiles = import ./get-env-files.nix {inherit pkgs;};
-        in
-          pkgs.writeShellScriptBin "nvim" ''
-            ${environment}
-            ${environmentFiles}
-
-            ${pkgs.lib.getExe neovimWithExtraPackages} \
-              --clean \
-              --cmd 'set rtp+=${neovimConfig}/nvim/' \
-              -u ${neovimConfig}/nvim/init.lua "$@"
-          '';
       in {
+        checks = {
+          system-wide = pkgs.callPackage ./nixosModuleTest-system-wide.nix {
+            inherit pkgs self;
+          };
+          single-user = pkgs.callPackage ./nixosModuleTest-single-user.nix {
+            inherit pkgs self;
+          };
+        };
         packages.default = neovimWrapped;
         apps.default = {
           type = "app";
