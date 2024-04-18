@@ -10,10 +10,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-utils.url = "github:numtide/flake-utils";
+
     lazy-nvim = {
       url = "github:folke/lazy.nvim";
       flake = false;
     };
+
+    # (Neo)vim Plugins
 
     which-key = {
       url = "github:folke/which-key.nvim";
@@ -25,17 +29,18 @@
       flake = false;
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
+    code-companion = {
+      url = "github:olimorris/codecompanion.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
     nixpkgs,
     neovim,
     flake-utils,
-    lazy-nvim,
-    which-key,
-    flash,
-  }:
+    ...
+  } @ inputs:
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {
@@ -45,20 +50,21 @@
               vimPlugins =
                 prev.vimPlugins
                 // {
-                  lazy-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
-                    pname = "lazy-nvim";
-                    version = "latest";
-                    src = lazy-nvim;
+                  lazy-nvim = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.lazy-nvim;
+                    src = inputs.lazy-nvim;
                   };
-                  flash = prev.vimUtils.buildVimPluginFrom2Nix {
-                    pname = "flash";
-                    version = "latest";
-                    src = flash;
+                  flash = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.flash;
+                    src = inputs.flash;
                   };
-                  which-key = prev.vimUtils.buildVimPluginFrom2Nix {
-                    pname = "which-key";
-                    version = "latest";
-                    src = which-key;
+                  which-key = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.which-key;
+                    src = inputs.which-key;
+                  };
+                  code-companion = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.code-companion;
+                    src = inputs.code-companion;
                   };
                 };
             })
@@ -73,11 +79,18 @@
           ln -s ${plugins}/* $out/nvim/lua
         '';
 
-        neovimWrapped = pkgs.writeShellScriptBin "nvim" ''
-          export XDG_CONFIG_HOME="${neovimConfig}"
+        neovimWrapped = let
+          environment = import ./get-env-vars.nix {inherit pkgs;};
+          environmentFiles = import ./get-env-files.nix {inherit pkgs;};
+        in
+          pkgs.writeShellScriptBin "nvim" ''
+            export XDG_CONFIG_HOME="${neovimConfig}"
 
-          ${neovim.packages.${system}.neovim}/bin/nvim "$@"
-        '';
+            ${environment}
+            ${environmentFiles}
+
+            ${neovim.packages.${system}.neovim}/bin/nvim "$@"
+          '';
       in {
         packages.default = neovimWrapped;
         apps.default = {

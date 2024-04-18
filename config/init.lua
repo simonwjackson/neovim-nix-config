@@ -24,4 +24,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	lockfile = vim.fn.stdpath("run") .. "/lazy/lazy-lock.json", -- lockfile generated after running update.
+})

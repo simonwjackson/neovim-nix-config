@@ -10,7 +10,10 @@
   buildPlugin = luaFile: let
     name = pkgs.lib.removeSuffix ".lua" luaFile;
     pluginNixFile = pluginDir + "/${name}.nix";
-    deps = import pluginNixFile {inherit pkgs;};
+    deps =
+      if builtins.pathExists pluginNixFile
+      then import pluginNixFile {inherit pkgs;}
+      else {replace = {};};
     substitutions =
       pkgs.lib.mapAttrs'
       (name: value: pkgs.lib.nameValuePair name value)
