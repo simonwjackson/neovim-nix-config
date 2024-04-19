@@ -18,6 +18,12 @@ in {
   options.programs.myNeovim = {
     enable = lib.mkEnableOption "My custom Neovim configuration";
 
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = package;
+      description = "The Neovim package to use.";
+    };
+
     users = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [];
@@ -49,8 +55,3 @@ in {
     });
   };
 }
-# package = lib.mkOption {
-#   type = lib.types.package;
-#   default = package;
-#   description = "The Neovim package to use.";
-# };
