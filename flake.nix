@@ -81,10 +81,6 @@
           };
         };
         packages.default = neovimWrapped;
-        apps.default = {
-          type = "app";
-          program = pkgs.lib.getExe neovimWrapped;
-        };
       }
     );
 }

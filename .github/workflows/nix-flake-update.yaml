@@ -18,7 +18,9 @@ jobs:
           experimental-features = nix-command flakes
 
     - name: Update Flake
-      run: nix flake update
+      run: |
+        nix flake update
+        nix flake check
 
     - name: Commit and Push Changes
       run: |
