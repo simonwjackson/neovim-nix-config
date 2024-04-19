@@ -13,6 +13,10 @@
     };
 
     # (Neo)vim Plugins
+    treesitter = {
+      url = "github:nvim-treesitter/nvim-treesitter";
+      flake = false;
+    };
 
     which-key = {
       url = "github:folke/which-key.nvim";
@@ -50,6 +54,10 @@
                   lazy-nvim = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.lazy-nvim;
                     src = inputs.lazy-nvim;
+                  };
+                  treesitter = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.treesitter;
+                    src = inputs.treesitter;
                   };
                   flash = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.flash;

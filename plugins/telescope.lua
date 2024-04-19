@@ -113,7 +113,9 @@ return {
 			"nvim-lua/plenary.nvim",
 			"BurntSushi/ripgrep",
 			"sharkdp/fd",
-			"nvim-treesitter/nvim-treesitter",
+			{
+				dir = "@nvimTreesitter@",
+			},
 			"nvim-tree/nvim-web-devicons",
 		},
 	},

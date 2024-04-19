@@ -1,7 +1,7 @@
 -- A statusline plugin written for neovim. It’s primarily written in lua.
 
 local function host()
-	local f = io.popen("/run/current-system/sw/bin/hostname")
+	local f = io.popen("@hostname@")
 	local hostname = f:read("*a") or ""
 	f:close()
 	hostname = string.gsub(hostname, "\n$", "")
@@ -9,7 +9,7 @@ local function host()
 end
 
 local function tmux_session()
-	local cmd = "tmux display-message -p '#S'"
+	local cmd = "@tmux@ display-message -p '#S'"
 	local session = vim.fn.system(cmd)
 	if session then
 		session = string.gsub(session, "\n$", "")

@@ -88,6 +88,7 @@
         "flash": "flash",
         "lazy-nvim": "lazy-nvim",
         "nixpkgs": "nixpkgs",
+        "treesitter": "treesitter",
         "which-key": "which-key"
       }
     },
@@ -103,6 +104,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "treesitter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713512096,
+        "narHash": "sha256-ECjYorLsX0p5pWL5nuqKsh7u1oKzzWYHIQc3in1Lj4I=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "rev": "fea5808a58dc00b7131163886fe2648bbcae9dff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
         "type": "github"
       }
     },

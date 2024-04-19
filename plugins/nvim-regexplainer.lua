@@ -20,7 +20,7 @@ return {
 				"mjsx",
 			},
 			-- Whether to log debug messages
-			debug = false,
+			debug = true,
 			-- 'split', 'popup'
 			display = "popup",
 			mappings = {
@@ -36,7 +36,9 @@ return {
 			},
 		},
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
+			{
+				dir = "@nvimTreesitter@",
+			},
 			"MunifTanjim/nui.nvim",
 		},
 	},

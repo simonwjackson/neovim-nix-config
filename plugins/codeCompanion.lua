@@ -20,7 +20,12 @@ return {
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
+			{
+				dir = "@nvimTreesitter@",
+			},
+			{
+				dir = "@treesitterYaml@",
+			},
 			"nvim-telescope/telescope.nvim", -- Optional
 			{
 				"stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
