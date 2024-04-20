@@ -34,6 +34,7 @@ local cmd = vim.api.nvim_command
 
 return {
 	{
+		name = "WhichKey",
 		dir = "@whichKey@",
 		init = function()
 			local wk = require("which-key")

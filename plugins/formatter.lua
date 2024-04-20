@@ -38,60 +38,61 @@ local ecma = {
 }
 
 return {
-	-- {
-	-- 	"mhartington/formatter.nvim",
-	-- 	init = function() -- Utilities for creating configurations
-	-- 		local util = require("formatter.util")
-	--
-	-- 		-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-	-- 		require("formatter").setup({
-	-- 			-- Enable or disable logging
-	-- 			logging = true,
-	-- 			-- Set the log level
-	-- 			log_level = vim.log.levels.WARN,
-	-- 			-- All formatter configurations are opt-in
-	-- 			filetype = {
-	-- 				-- Formatter configurations for filetype "lua" go here
-	-- 				-- and will be executed in order
-	-- 				lua = {
-	-- 					require("formatter.filetypes.lua").stylua,
-	-- 				},
-	--
-	-- 				nix = {
-	-- 					require("formatter.filetypes.nix").alejandra,
-	-- 				},
-	--
-	-- 				sh = shell,
-	-- 				zsh = shell,
-	--
-	-- 				ts = ecma,
-	-- 				tsx = ecma,
-	-- 				js = ecma,
-	-- 				jsx = ecma,
-	-- 				html = ecma,
-	-- 				css = ecma,
-	-- 				json = ecma,
-	-- 				javascript = ecma,
-	-- 				javascriptreact = ecma,
-	-- 				typescript = ecma,
-	-- 				typescriptreact = ecma,
-	--
-	-- 				-- Use the special "*" filetype for defining formatter configurations on
-	-- 				-- any filetype
-	-- 				["*"] = {
-	-- 					require("formatter.filetypes.any").remove_trailing_whitespace,
-	-- 				},
-	-- 			},
-	-- 		})
-	--
-	-- 		local formatgroup = vim.api.nvim_create_augroup("FormatAutoGroup", { clear = true })
-	-- 		vim.api.nvim_create_autocmd("BufWritePost", {
-	-- 			callback = function()
-	-- 				vim.cmd("FormatWrite")
-	-- 			end,
-	-- 			group = formatgroup,
-	-- 			desc = "Format document with formatters",
-	-- 		})
-	-- 	end,
-	-- },
+	{
+    name = "Formatter.nvim",
+		dir = "@formatterNvim@",
+		init = function() -- Utilities for creating configurations
+			-- local util = require("formatter.util")
+
+			-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+			require("formatter").setup({
+				-- Enable or disable logging
+				logging = true,
+				-- Set the log level
+				log_level = vim.log.levels.WARN,
+				-- All formatter configurations are opt-in
+				filetype = {
+					-- Formatter configurations for filetype "lua" go here
+					-- and will be executed in order
+					lua = {
+						require("formatter.filetypes.lua").stylua,
+					},
+
+					nix = {
+						require("formatter.filetypes.nix").alejandra,
+					},
+
+					sh = shell,
+					zsh = shell,
+
+					ts = ecma,
+					tsx = ecma,
+					js = ecma,
+					jsx = ecma,
+					html = ecma,
+					css = ecma,
+					json = ecma,
+					javascript = ecma,
+					javascriptreact = ecma,
+					typescript = ecma,
+					typescriptreact = ecma,
+
+					-- Use the special "*" filetype for defining formatter configurations on
+					-- any filetype
+					["*"] = {
+						require("formatter.filetypes.any").remove_trailing_whitespace,
+					},
+				},
+			})
+
+			local formatgroup = vim.api.nvim_create_augroup("FormatAutoGroup", { clear = true })
+			vim.api.nvim_create_autocmd("BufWritePost", {
+				callback = function()
+					vim.cmd("FormatWrite")
+				end,
+				group = formatgroup,
+				desc = "Format document with formatters",
+			})
+		end,
+	},
 }
