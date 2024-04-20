@@ -23,6 +23,7 @@
   neovimConfig = pkgs.runCommandNoCC "neovimConfig" {} ''
     mkdir -p $out/nvim/lua
     cat ${self}/config/init.lua > $out/nvim/init.lua
+
     cat >> $out/nvim/init.lua <<EOF
       vim.opt.rtp:prepend("${pkgs.vimPlugins.lazy-nvim}")
       require("lazy").setup("plugins", {
@@ -34,6 +35,7 @@
       vim.opt.runtimepath:prepend("${treesitter-parsers}")
       vim.opt.runtimepath:prepend("${pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.yaml])}")
     EOF
+
     ln -s ${plugins}/* $out/nvim/lua
   '';
 in

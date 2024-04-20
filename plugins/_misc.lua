@@ -58,7 +58,7 @@ return {
 
 	-- A dark One Color Scheme for Neovim >0.5 written in Lua.
 	{
-		"navarasu/onedark.nvim",
+		dir = "@oneDark@",
 		init = function()
 			require("onedark").setup({
 				-- Main options --
@@ -85,6 +85,7 @@ return {
 					background = true, -- use background color for virtual text
 				},
 			})
+			require("onedark").load()
 		end,
 	},
 }

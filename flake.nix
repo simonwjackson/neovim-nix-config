@@ -32,6 +32,11 @@
       url = "github:olimorris/codecompanion.nvim";
       flake = false;
     };
+
+    onedark-colorscheme = {
+      url = "github:navarasu/onedark.nvim";
+      flake = false;
+    };
   };
   outputs = {
     self,
@@ -51,6 +56,10 @@
               vimPlugins =
                 prev.vimPlugins
                 // {
+                  onedark-colorscheme = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.onedark-colorscheme;
+                    src = inputs.onedark-colorscheme;
+                  };
                   lazy-nvim = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.lazy-nvim;
                     src = inputs.lazy-nvim;
