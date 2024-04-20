@@ -2,7 +2,7 @@
 local shell = {
 	function()
 		return {
-			exe = "shfmt",
+			exe = "@shfmt@",
 			args = { "-i", 2 },
 			stdin = true,
 		}
@@ -39,7 +39,7 @@ local ecma = {
 
 return {
 	{
-    name = "Formatter.nvim",
+		name = "Formatter.nvim",
 		dir = "@formatterNvim@",
 		init = function() -- Utilities for creating configurations
 			-- local util = require("formatter.util")

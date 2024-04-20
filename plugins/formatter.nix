@@ -1,7 +1,7 @@
 {pkgs}: {
   packages = [
     pkgs.alejandra
-    pkgs.shfmt
+    pkgs.prettierd
     pkgs.stylua
     pkgs.eslint_d
   ];
@@ -19,5 +19,6 @@
   replace = {
     flash = pkgs.vimPlugins.flash;
     formatterNvim = pkgs.vimPlugins.formatter-nvim;
+    shfmt = pkgs.shfmt;
   };
 }
