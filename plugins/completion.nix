@@ -1,4 +1,7 @@
 {pkgs}: {
+  packages = [
+    pkgs.luajitPackages.luacheck
+  ];
   replace = {
     nvimCmp = pkgs.vimPlugins.nvim-cmp;
     cmpNvimLua = pkgs.vimPlugins.cmp-nvim-lua;
