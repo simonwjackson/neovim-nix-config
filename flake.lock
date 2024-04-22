@@ -256,6 +256,22 @@
         "type": "github"
       }
     },
+    "edgy-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711471270,
+        "narHash": "sha256-OgvrHDU+PcRsf3NtIglYFYIvnd8pAT481+w2bllZtXw=",
+        "owner": "folke",
+        "repo": "edgy.nvim",
+        "rev": "de79b7d92a5979cd71a9a1d8b6282515345e5055",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "edgy.nvim",
+        "type": "github"
+      }
+    },
     "fd": {
       "flake": false,
       "locked": {
@@ -771,6 +787,7 @@
         "comment-nvim": "comment-nvim",
         "diffview-nvim": "diffview-nvim",
         "dressing-nvim": "dressing-nvim",
+        "edgy-nvim": "edgy-nvim",
         "fd": "fd",
         "flake-utils": "flake-utils",
         "flash": "flash",
@@ -871,17 +888,14 @@
     "telescope-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1713586895,
-        "narHash": "sha256-3mrcol36HmY31pMAadirDdZqJtD0f+m8V0Lz8FnBx0M=",
-        "owner": "nvim-telescope",
-        "repo": "telescope.nvim",
-        "rev": "a4432dfb9b0b960c4cbc8765a42dc4fe2e029e8f",
-        "type": "github"
+        "lastModified": 1710253002,
+        "narHash": "sha256-NmB9VDPmnZifUDQl3APWb81isbRTK6+k5onT6bthoqw=",
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope.nvim/archive/refs/tags/0.1.6.tar.gz"
       },
       "original": {
-        "owner": "nvim-telescope",
-        "repo": "telescope.nvim",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://github.com/nvim-telescope/telescope.nvim/archive/refs/tags/0.1.6.tar.gz"
       }
     },
     "treesitter": {

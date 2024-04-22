@@ -28,7 +28,6 @@
     commentNvim = pkgs.vimPlugins.comment-nvim;
     diffviewNvim = pkgs.vimPlugins.diffview-nvim;
     focusNvim = pkgs.vimPlugins.focus-nvim;
-    gitWorktreeNvim = pkgs.vimPlugins.git-worktree-nvim;
     whichKeyNvim = pkgs.vimPlugins.which-key-nvim;
     gitsignsNvim = pkgs.vimPlugins.gitsigns-nvim;
     lualineNvim = pkgs.vimPlugins.lualine-nvim;

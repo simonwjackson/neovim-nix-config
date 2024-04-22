@@ -70,12 +70,16 @@
       url = "github:rmagatti/auto-session";
       flake = false;
     };
+    edgy-nvim = {
+      url = "github:folke/edgy.nvim";
+      flake = false;
+    };
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
     telescope-nvim = {
-      url = "github:nvim-telescope/telescope.nvim";
+      url = "https://github.com/nvim-telescope/telescope.nvim/archive/refs/tags/0.1.6.tar.gz";
       flake = false;
     };
     dressing-nvim = {
@@ -277,6 +281,10 @@
               vimPlugins =
                 prev.vimPlugins
                 // {
+                  edgy-nvim = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.edgy-nvim;
+                    src = inputs.edgy-nvim;
+                  };
                   nvim-cmp = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.nvim-cmp;
                     src = inputs.nvim-cmp;

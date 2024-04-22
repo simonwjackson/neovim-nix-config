@@ -45,6 +45,9 @@ in
     ${import ./get-env-vars.nix {inherit pkgs;}}
     ${import ./get-env-files.nix {inherit pkgs;}}
 
+    export VISUAL="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
+    export EDITOR="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
+
     ${pkgs.lib.getExe neovim} \
       --clean \
       --cmd 'set rtp+=${neovimConfig}/nvim/' \

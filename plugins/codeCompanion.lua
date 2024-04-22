@@ -19,16 +19,35 @@ return {
 			})
 		end,
 		dependencies = {
-			"nvim-lua/plenary.nvim",
 			{
-				dir = "@nvimTreesitter@",
+				name = "Edgy.nvim",
+				dir = "@edgyNvim@",
+				event = "VeryLazy",
+				init = function()
+					vim.opt.laststatus = 3
+					vim.opt.splitkeep = "screen"
+				end,
+				opts = {
+					right = {
+						{ ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.45 } },
+					},
+				},
 			},
 			{
+				name = "plenary.nvim",
+				dir = "@plenaryNvim@",
+			},
+			{
+				name = "Treesitter - Yaml",
 				dir = "@treesitterYaml@",
 			},
-			"nvim-telescope/telescope.nvim", -- Optional
 			{
-				"stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+				name = "Telescope",
+				dir = "@telescope@",
+			},
+			{
+				name = "Dressing.nvim",
+				dir = "@dressing@", -- Optional: Improves the default Neovim UI
 				opts = {},
 			},
 		},
