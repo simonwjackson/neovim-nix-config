@@ -5,77 +5,28 @@
       url = "github:NixOS/nixpkgs";
     };
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
     flake-utils.url = "github:numtide/flake-utils";
 
-    lazy-nvim = {
-      url = "github:folke/lazy.nvim";
-      flake = false;
-    };
-
-    # (Neo)vim Plugins
-
-    rose-pine = {
-      url = "github:rose-pine/neovim";
-      flake = false;
-    };
-    vim-floaterm = {
-      url = "github:voldikss/vim-floaterm";
-      flake = false;
-    };
-    vim-eunuch = {
-      url = "github:tpope/vim-eunuch";
-      flake = false;
-    };
     vim-visual-star-search = {
       url = "github:nelstrom/vim-visual-star-search";
       flake = false;
     };
-    vim-expand-region = {
-      url = "github:terryma/vim-expand-region";
+
+    edgy-nvim = {
+      url = "github:folke/edgy.nvim";
       flake = false;
     };
-    is-vim = {
-      url = "github:haya14busa/is.vim";
-      flake = false;
-    };
-    neoconf-nvim = {
-      url = "github:folke/neoconf.nvim";
-      flake = false;
-    };
-    neodev-nvim = {
-      url = "github:folke/neodev.nvim";
-      flake = false;
-    };
-    mason-lspconfig-nvim = {
-      url = "github:williamboman/mason-lspconfig.nvim";
-      flake = false;
-    };
-    nvim-lspconfig = {
-      url = "github:neovim/nvim-lspconfig";
-      flake = false;
-    };
-    lsp_signature-nvim = {
-      url = "github:ray-x/lsp_signature.nvim";
-      flake = false;
-    };
-    vim-mdx-js = {
-      url = "github:jxnblk/vim-mdx-js";
-      flake = false;
-    };
+
+    #######
+
     nvim-surround = {
       url = "github:kylechui/nvim-surround";
       flake = false;
     };
     auto-session = {
       url = "github:rmagatti/auto-session";
-      flake = false;
-    };
-    edgy-nvim = {
-      url = "github:folke/edgy.nvim";
-      flake = false;
-    };
-    plenary-nvim = {
-      url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
     telescope-nvim = {
@@ -206,10 +157,6 @@
       url = "github:olimorris/codecompanion.nvim";
       flake = false;
     };
-    onedark-colorscheme = {
-      url = "github:navarasu/onedark.nvim";
-      flake = false;
-    };
     cmp-nvim-lsp = {
       url = "github:hrsh7th/cmp-nvim-lsp";
       flake = false;
@@ -277,14 +224,23 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
+            inputs.awesome-neovim-plugins.overlays.default
+            inputs.neovim-nightly-overlay.overlay
             (final: prev: {
               vimPlugins =
                 prev.vimPlugins
                 // {
-                  edgy-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.edgy-nvim;
-                    src = inputs.edgy-nvim;
+                  vim-visual-star-search = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.vim-visual-star-search;
+                    src = inputs.vim-visual-star-search;
                   };
+                  vim-expand-region = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.vim-expand-region;
+                    src = inputs.vim-expand-region;
+                  };
+
+                  ###
+
                   nvim-cmp = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.nvim-cmp;
                     src = inputs.nvim-cmp;
@@ -341,14 +297,6 @@
                     name = baseNameOf inputs.cmp-npm;
                     src = inputs.cmp-npm;
                   };
-                  onedark-colorscheme = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.onedark-colorscheme;
-                    src = inputs.onedark-colorscheme;
-                  };
-                  lazy-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.lazy-nvim;
-                    src = inputs.lazy-nvim;
-                  };
                   treesitter = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.treesitter;
                     src = inputs.treesitter;
@@ -365,47 +313,6 @@
                     name = baseNameOf inputs.code-companion;
                     src = inputs.code-companion;
                   };
-
-                  rose-pine = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.rose-pine;
-                    src = inputs.rose-pine;
-                  };
-                  vim-floaterm = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-floaterm;
-                    src = inputs.vim-floaterm;
-                  };
-                  vim-eunuch = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-eunuch;
-                    src = inputs.vim-eunuch;
-                  };
-                  vim-visual-star-search = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-visual-star-search;
-                    src = inputs.vim-visual-star-search;
-                  };
-                  vim-expand-region = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-expand-region;
-                    src = inputs.vim-expand-region;
-                  };
-                  is-vim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.is-vim;
-                    src = inputs.is-vim;
-                  };
-                  neoconf-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.neoconf-nvim;
-                    src = inputs.neoconf-nvim;
-                  };
-                  neodev-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.neodev-nvim;
-                    src = inputs.neodev-nvim;
-                  };
-                  mason-lspconfig-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.mason-lspconfig-nvim;
-                    src = inputs.mason-lspconfig-nvim;
-                  };
-                  nvim-lspconfig = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.nvim-lspconfig;
-                    src = inputs.nvim-lspconfig;
-                  };
                   lsp_signature-nvim = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.lsp_signature-nvim;
                     src = inputs.lsp_signature-nvim;
@@ -421,10 +328,6 @@
                   auto-session = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.auto-session;
                     src = inputs.auto-session;
-                  };
-                  plenary-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.plenary-nvim;
-                    src = inputs.plenary-nvim;
                   };
                   telescope-nvim = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.telescope-nvim;

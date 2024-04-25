@@ -6,6 +6,6 @@
   };
 
   replace = {
-    nixd = pkgs.lib.getExe pkgs.nixd;
+    plenary = pkgs.awesomeNeovimPlugins.plenary-nvim;
   };
 }

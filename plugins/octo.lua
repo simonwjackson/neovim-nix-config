@@ -6,7 +6,10 @@ return {
 		lazy = false,
 		enabled = false,
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{
+				dir = "@plenary@",
+				name = "plenary",
+			},
 			"nvim-telescope/telescope.nvim",
 			"kyazdani42/nvim-web-devicons",
 		},

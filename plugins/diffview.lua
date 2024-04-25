@@ -4,7 +4,10 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{
+				dir = "@plenary@",
+				name = "plenary",
+			},
 		},
 		lazy = false,
 		config = function()

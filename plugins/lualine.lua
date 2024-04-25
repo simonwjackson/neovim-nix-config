@@ -2,6 +2,7 @@
 
 local function host()
 	local f = io.popen("@hostname@")
+
 	local hostname = f:read("*a") or ""
 	f:close()
 	hostname = string.gsub(hostname, "\n$", "")
@@ -74,9 +75,10 @@ return {
 					},
 				},
 				sections = {
-					lualine_a = { tmux_session, "mode" },
+					lualine_a = { "mode" },
+					-- lualine_a = { tmux_session, "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename" },
+					lualine_c = {},
 
 					lualine_x = { tabs },
 					lualine_y = {

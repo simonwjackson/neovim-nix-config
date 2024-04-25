@@ -14,18 +14,83 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = false,
+		config = function()
+			require("telescope").load_extension("advanced_git_search")
+		end,
+		opts = {
+			extensions = {
+				advanced_git_search = {
+					-- Browse command to open commits in browser. Default fugitive GBrowse.
+					browse_command = "GBrowse",
+					-- fugitive or diffview
+					diff_plugin = "fugitive",
+					-- customize git in previewer
+					-- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+					git_flags = {},
+					-- customize git diff in previewer
+					-- e.g. flags such as { "--raw" }
+					git_diff_flags = {},
+					-- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+					show_builtin_git_pickers = false,
+					entry_default_author_or_date = "author", -- one of "author" or "date"
+					keymaps = {
+						-- following keymaps can be overridden
+						toggle_date_author = "<C-w>",
+						open_commit_in_browser = "<C-o>",
+						copy_commit_hash = "<C-y>",
+						show_entire_commit = "<C-e>",
+					},
+
+					-- Telescope layout setup
+					telescope_theme = {
+						function_name_1 = {
+							-- Theme options
+						},
+						function_name_2 = "dropdown",
+						-- e.g. realistic example
+						show_custom_functions = {
+							layout_config = { width = 0.4, height = 0.4 },
+						},
+					},
+				},
+			},
+			pickers = {
+				colorscheme = {
+					enable_preview = true,
+				},
+			},
+		},
 		keys = {
+			{
+				"<leader>pp",
+				function()
+					os.execute("nix run nixpkgs#tmux -- switch-client -l > /dev/null 2>&1")
+				end,
+				"Tmux: Previous session",
+			},
+
+			{
+				"<leader>pn",
+				function()
+					os.execute(
+						'nix run nixpkgs#tmux -- new-session -d -c "/glacier/snowscape/notes" -s "notes" "nvim" > /dev/null 2>&1'
+					)
+					os.execute('nix run nixpkgs#tmux -- switch-client -t "notes"  > /dev/null 2>&1')
+				end,
+				"Tmux: Previous session",
+			},
+
 			{
 				"<leader>fe",
 				function()
 					OpenLfInFloaterm()
 				end,
-				desc = "File Explorer",
+				desc = "File explorer",
 			},
 			{
 				"<leader>fn",
 				"<cmd>enew<cr>",
-				desc = "New File",
+				desc = "New file",
 			},
 			{
 				"<leader>ff",
@@ -97,20 +162,35 @@ return {
 				end,
 				desc = "Which-key query lookup",
 			},
-			{
-				"<leader>jl",
-				":FloatermNew --name=journallog --title=journal:log --height=1 journal log<cr>",
-				desc = "Journal: Log",
-			},
-			{
-				"<leader>jt",
-				":FloatermNew --name=journaltask --title=journal:task --height=1 journal task<cr>",
-				desc = "Journal: Task",
-			},
+			-- {
+			-- 	"<leader>jl",
+			-- 	":FloatermNew --name=journallog --title=journal:log --height=1 journal log<cr>",
+			-- 	desc = "Journal: Log",
+			-- },
+			-- {
+			-- 	"<leader>jt",
+			-- 	":FloatermNew --name=journaltask --title=journal:task --height=1 journal task<cr>",
+			-- 	desc = "Journal: Task",
+			-- },
 		},
 		branch = "0.1.x",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{
+				"aaronhallaert/advanced-git-search.nvim",
+				cmd = { "AdvancedGitSearch" },
+				dependencies = {
+					"tpope/vim-fugitive",
+					-- to open commits in browser with fugitive
+					"tpope/vim-rhubarb",
+					-- optional: to replace the diff from fugitive with diffview.nvim
+					-- (fugitive is still needed to open in browser)
+					"sindrets/diffview.nvim",
+				},
+			},
+			{
+				dir = "@plenary@",
+				name = "plenary",
+			},
 			"BurntSushi/ripgrep",
 			"sharkdp/fd",
 			{

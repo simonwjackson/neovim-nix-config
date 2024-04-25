@@ -16,4 +16,5 @@
   replace = {
     flash = pkgs.vimPlugins.flash;
   };
+  asdf = false;
 }

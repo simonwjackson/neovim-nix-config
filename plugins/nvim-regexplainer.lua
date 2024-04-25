@@ -36,9 +36,9 @@ return {
 			},
 		},
 		dependencies = {
-			{
-				dir = "@nvimTreesitter@",
-			},
+			-- {
+			-- 	dir = "@nvimTreesitter@",
+			-- },
 			"MunifTanjim/nui.nvim",
 		},
 	},

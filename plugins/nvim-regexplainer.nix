@@ -6,6 +6,7 @@
   };
 
   replace = {
-    nvimTreesitter = pkgs.vimPlugins.nvim-treesitter;
+    # TODO: Place this in `runtimepath`
+    # (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.regex])).dependencies
   };
 }

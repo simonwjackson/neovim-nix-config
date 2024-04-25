@@ -4,11 +4,10 @@ return {
 	{
 		"ojroques/nvim-osc52",
 		init = function()
-			vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
-
 			require("plugins.nvim-osc52")
 
 			vim.keymap.set("n", "yy", "yy", { remap = true })
+			vim.keymap.set("n", "dd", "dd", { remap = true })
 
 			function copy()
 				if vim.v.event.operator == "y" and (vim.v.event.regname == "" or vim.v.event.regname == "+") then

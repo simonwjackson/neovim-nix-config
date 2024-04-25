@@ -4,47 +4,688 @@ local api = vim.api
 local cmd = vim.api.nvim_command
 
 return {
-	{ "rose-pine/neovim", name = "rose-pine" },
+	-- Might not work with flash
+	-- {
+	-- 	"roobert/surround-ui.nvim",
+	-- 	dependencies = {
+	-- 		"kylechui/nvim-surround",
+	-- 		"folke/which-key.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("surround-ui").setup({
+	-- 			root_key = "S",
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"rasulomaroff/reactive.nvim",
+	-- 	opts = {
+	-- 		builtin = {
+	-- 			cursorline = true,
+	-- 			cursor = false,
+	-- 			modemsg = false,
+	-- 		},
+	-- 	},
+	-- },
+	-- {
+	-- 	"miversen33/sunglasses.nvim",
+	-- 	config = true,
+	-- 	opts = {
+	-- 		filter_type = "NOSYNTAX",
+	-- 		filter_percent = 0.65,
+	-- 	},
+	-- },
+	-- {
+	-- 	"folke/twilight.nvim",
+	-- 	opts = {
+	-- 		dimming = {
+	-- 			alpha = 0.66, -- amount of dimming
+	-- 			-- we try to get the foreground from the highlight groups or fallback color
+	-- 			color = { "Normal", "#ffffff" },
+	-- 			term_bg = "#000000", -- if guibg=NONE, this will be used to calculate text color
+	-- 			inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+	-- 		},
+	-- 		context = 10, -- amount of lines we will try to show around the current line
+	-- 		treesitter = true, -- use treesitter when available for the filetype
+	-- 		-- treesitter is used to automatically expand the visible text,
+	-- 		-- but you can further control the types of nodes that should always be fully expanded
+	-- 		expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+	-- 			"function",
+	-- 			"method",
+	-- 			"table",
+	-- 			"if_statement",
+	-- 		},
+	-- 		exclude = {}, -- exclude these filetypes
+	-- 	},
+	-- },
 
-	-- Floating terminal plugin for Vim
+	-- INFO: Needs some color tweaks
+	-- {
+	-- 	"Bekaboo/dropbar.nvim",
+	-- 	-- optional, but required for fuzzy finder support
+	-- 	dependencies = {
+	-- 		"nvim-telescope/telescope-fzf-native.nvim",
+	-- 	},
+	-- },
+	-- {
+	-- 	"b0o/incline.nvim",
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	config = function()
+	-- 		local helpers = require("incline.helpers")
+	-- 		local devicons = require("nvim-web-devicons")
+	-- 		require("incline").setup({
+	-- 			window = {
+	-- 				padding = 0,
+	-- 				margin = { horizontal = 0 },
+	-- 			},
+	-- 			render = function(props)
+	-- 				local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+	-- 				if filename == "" then
+	-- 					filename = "[No Name]"
+	-- 				end
+	-- 				local ft_icon, ft_color = devicons.get_icon_color(filename)
+	-- 				local modified = vim.bo[props.buf].modified
+	-- 				return {
+	-- 					ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) }
+	-- 						or "",
+	-- 					" ",
+	-- 					{ filename, gui = modified and "bold,italic" or "bold" },
+	-- 					" ",
+	-- 					guibg = "#44406e",
+	-- 				}
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- 	-- Optional: Lazy load Incline
+	-- 	event = "VeryLazy",
+	-- },
+
 	{
-		"voldikss/vim-floaterm",
+		dir = "@neodim@",
+		name = "neodim",
+		event = "LspAttach",
+		config = function()
+			require("neodim").setup({
+				refresh_delay = 75,
+				alpha = 0.75,
+				blend_color = "#000000",
+				hide = {
+					underline = true,
+					virtual_text = true,
+					signs = true,
+				},
+				regex = {
+					"[uU]nused",
+					"[nN]ever [rR]ead",
+					"[nN]ot [rR]ead",
+				},
+				priority = 128,
+				disable = {},
+			})
+		end,
+	},
+	{
+		dir = "@mkdir@",
+		name = "mkdir",
+	},
+	-- TODO: Needs some tinkering to work in my env
+	-- {
+	-- 	"willothy/flatten.nvim",
+	-- 	lazy = false,
+	-- 	config = true,
+	-- 	priority = 1001,
+	-- },
+	{
+		dir = "@chainsaw@",
+		name = "chainsaw",
+	},
+	{
+		dir = "@pqf@",
+		name = "Pretty Quickfix",
+	},
+	{
+		dir = "@overseer@",
+		name = "overseer",
+		opts = {},
+	},
+	"sindrets/diffview.nvim",
+	"f-person/git-blame.nvim",
+	{
+		"moyiz/git-dev.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
+		"topaxi/gh-actions.nvim",
+		cmd = "GhActions",
+		keys = {
+			{ "<leader>gh", "<cmd>GhActions<cr>", desc = "Open Github Actions" },
+		},
+		-- optional, you can also install and use `yq` instead.
+		build = "make",
+		dependencies = {
+			{
+				dir = "@plenary@",
+				name = "plenary",
+			},
+			"MunifTanjim/nui.nvim",
+		},
+		opts = {},
+		config = function(_, opts)
+			require("gh-actions").setup(opts)
+		end,
+	},
+	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("better_escape").setup({
+				mapping = { "lk", "kl" }, -- a table with mappings to use
+				timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+				clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+				keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+				-- example(recommended)
+				-- keys = function()
+				--   return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
+				-- end,
+			})
+		end,
+	},
+	{
+		"petertriho/nvim-scrollbar",
+		init = function()
+			require("scrollbar").setup({
+				show = true,
+				show_in_active_only = true,
+				set_highlights = true,
+				folds = 1000, -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
+				max_lines = false, -- disables if no. of lines in buffer exceeds this
+				hide_if_all_visible = false, -- Hides everything if all lines are visible
+				throttle_ms = 100,
+				handle = {
+					text = " ",
+					blend = 50, -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
+					color = nil,
+					color_nr = nil, -- cterm
+					highlight = "CursorColumn",
+					hide_if_all_visible = true, -- Hides handle if all lines are visible
+				},
+				marks = {
+					Cursor = {
+						text = " ",
+						priority = 0,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "Normal",
+					},
+					Search = {
+						text = { "-", "=" },
+						priority = 1,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "Search",
+					},
+					Error = {
+						text = { "-", "=" },
+						priority = 2,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "DiagnosticVirtualTextError",
+					},
+					Warn = {
+						text = { "-", "=" },
+						priority = 3,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "DiagnosticVirtualTextWarn",
+					},
+					Info = {
+						text = { "-", "=" },
+						priority = 4,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "DiagnosticVirtualTextInfo",
+					},
+					Hint = {
+						text = { "-", "=" },
+						priority = 5,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "DiagnosticVirtualTextHint",
+					},
+					Misc = {
+						text = { "-", "=" },
+						priority = 6,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "Normal",
+					},
+					GitAdd = {
+						text = "┆",
+						priority = 7,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "GitSignsAdd",
+					},
+					GitChange = {
+						text = "┆",
+						priority = 7,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "GitSignsChange",
+					},
+					GitDelete = {
+						text = "▁",
+						priority = 7,
+						gui = nil,
+						color = nil,
+						cterm = nil,
+						color_nr = nil, -- cterm
+						highlight = "GitSignsDelete",
+					},
+				},
+				excluded_buftypes = {
+					"terminal",
+				},
+				excluded_filetypes = {
+					"cmp_docs",
+					"cmp_menu",
+					"noice",
+					"prompt",
+					"TelescopePrompt",
+				},
+				autocmd = {
+					render = {
+						"BufWinEnter",
+						"TabEnter",
+						"TermEnter",
+						"WinEnter",
+						"CmdwinLeave",
+						"TextChanged",
+						"VimResized",
+						"WinScrolled",
+					},
+					clear = {
+						"BufWinLeave",
+						"TabLeave",
+						"TermLeave",
+						"WinLeave",
+					},
+				},
+				handlers = {
+					cursor = true,
+					diagnostic = true,
+					gitsigns = false, -- Requires gitsigns
+					handle = true,
+					search = false, -- Requires hlslens
+					ale = false, -- Requires ALE
+				},
+			})
+		end,
+	},
+	{
+		"utilyre/sentiment.nvim",
+		version = "*",
+		event = "VeryLazy", -- keep for lazy loading
+		opts = {
+			-- config
+		},
+		init = function()
+			-- `matchparen.vim` needs to be disabled manually in case of lazy loading
+			vim.g.loaded_matchparen = 1
+		end,
+	},
+	{
+		"nacro90/numb.nvim",
+		init = function()
+			require("numb").setup()
+		end,
 	},
 
+	{
+		"gbprod/cutlass.nvim",
+		opts = {
+			exclude = {
+				"nd",
+				"nD",
+			},
+		},
+	},
+	{
+		"debugloop/telescope-undo.nvim",
+		dependencies = { -- note how they're inverted to above example
+			{
+				"nvim-telescope/telescope.nvim",
+				dependencies = {
+					{
+						dir = "@plenary@",
+						name = "plenary",
+					},
+				},
+			},
+		},
+		keys = {
+			{ -- lazy style key map
+				"<leader>u",
+				"<cmd>Telescope undo<cr>",
+				desc = "undo history",
+			},
+		},
+		opts = {
+			-- don't use `defaults = { }` here, do this in the main telescope spec
+			extensions = {
+				undo = {
+					-- telescope-undo.nvim config, see below
+				},
+				-- no other extensions here, they can have their own spec too
+			},
+		},
+		config = function(_, opts)
+			-- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
+			-- configs for us. We won't use data, as everything is in it's own namespace (telescope
+			-- defaults, as well as each extension).
+			require("telescope").setup(opts)
+			require("telescope").load_extension("undo")
+		end,
+	},
+	{
+		"nat-418/boole.nvim",
+		init = function()
+			require("boole").setup({
+				mappings = {
+					increment = "<C-a>",
+					decrement = "<C-x>",
+				},
+				-- User defined loops
+				additions = {
+					{ "Foo", "Bar" },
+					{ "tic", "tac", "toe" },
+				},
+				allow_caps_additions = {
+					{ "enable", "disable" },
+					-- enable → disable
+					-- Enable → Disable
+					-- ENABLE → DISABLE
+				},
+			})
+		end,
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		name = "spectre",
+		keys = {
+			{
+				"<leader>S",
+				function()
+					require("spectre").toggle()
+				end,
+				desc = "Toggle Spectre",
+			},
+			{
+				"<leader>rw",
+				function()
+					require("spectre").open_visual({ select_word = true })
+				end,
+				desc = "Search current word",
+			},
+			{
+				"<leader>rw",
+				function()
+					require("spectre").open_visual()
+				end,
+				mode = "v",
+				desc = "Search current word",
+			},
+			{
+				"<leader>rp",
+				function()
+					require("spectre").open_file_search({ select_word = true })
+				end,
+				desc = "Search on current file",
+			},
+		},
+		opts = {
+			color_devicons = true,
+			open_cmd = "vnew",
+			live_update = false, -- auto execute search again when you write to any file in vim
+			lnum_for_results = true, -- show line number for search/replace results
+			line_sep_start = "┌-----------------------------------------",
+			result_padding = "¦  ",
+			line_sep = "└-----------------------------------------",
+			highlight = {
+				ui = "String",
+				search = "DiffChange",
+				replace = "DiffDelete",
+			},
+			mapping = {
+				["tab"] = {
+					map = "<Tab>",
+					cmd = "<cmd>lua require('spectre').tab()<cr>",
+					desc = "next query",
+				},
+				["shift-tab"] = {
+					map = "<S-Tab>",
+					cmd = "<cmd>lua require('spectre').tab_shift()<cr>",
+					desc = "previous query",
+				},
+				["toggle_line"] = {
+					map = "dd",
+					cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+					desc = "toggle item",
+				},
+				["enter_file"] = {
+					map = "<cr>",
+					cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>",
+					desc = "open file",
+				},
+				["send_to_qf"] = {
+					map = "<leader>q",
+					cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+					desc = "send all items to quickfix",
+				},
+				["replace_cmd"] = {
+					map = "<leader>c",
+					cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
+					desc = "input replace command",
+				},
+				["show_option_menu"] = {
+					map = "<leader>o",
+					cmd = "<cmd>lua require('spectre').show_options()<CR>",
+					desc = "show options",
+				},
+				["run_current_replace"] = {
+					map = "<leader>rc",
+					cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
+					desc = "replace current line",
+				},
+				["run_replace"] = {
+					map = "<leader>R",
+					cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+					desc = "replace all",
+				},
+				["change_view_mode"] = {
+					map = "<leader>v",
+					cmd = "<cmd>lua require('spectre').change_view()<CR>",
+					desc = "change result view mode",
+				},
+				["change_replace_sed"] = {
+					map = "trs",
+					cmd = "<cmd>lua require('spectre').change_engine_replace('sed')<CR>",
+					desc = "use sed to replace",
+				},
+				["change_replace_oxi"] = {
+					map = "tro",
+					cmd = "<cmd>lua require('spectre').change_engine_replace('oxi')<CR>",
+					desc = "use oxi to replace",
+				},
+				["toggle_live_update"] = {
+					map = "tu",
+					cmd = "<cmd>lua require('spectre').toggle_live_update()<CR>",
+					desc = "update when vim writes to file",
+				},
+				["toggle_ignore_case"] = {
+					map = "ti",
+					cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
+					desc = "toggle ignore case",
+				},
+				["toggle_ignore_hidden"] = {
+					map = "th",
+					cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
+					desc = "toggle search hidden",
+				},
+				["resume_last_search"] = {
+					map = "<leader>l",
+					cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
+					desc = "repeat last search",
+				},
+				-- you can put your mapping here it only use normal mode
+			},
+			find_engine = {
+				-- rg is map with finder_cmd
+				["rg"] = {
+					cmd = "rg",
+					-- default args
+					args = {
+						"--pcre2",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+					},
+					options = {
+						["ignore-case"] = {
+							value = "--ignore-case",
+							icon = "[I]",
+							desc = "ignore case",
+						},
+						["hidden"] = {
+							value = "--hidden",
+							desc = "hidden file",
+							icon = "[H]",
+						},
+						-- you can put any rg search option you want here it can toggle with
+						-- show_option function
+					},
+				},
+				["ag"] = {
+					cmd = "ag",
+					args = {
+						"--vimgrep",
+						"-s",
+					},
+					options = {
+						["ignore-case"] = {
+							value = "-i",
+							icon = "[I]",
+							desc = "ignore case",
+						},
+						["hidden"] = {
+							value = "--hidden",
+							desc = "hidden file",
+							icon = "[H]",
+						},
+					},
+				},
+			},
+			replace_engine = {
+				["sed"] = {
+					cmd = "sed",
+					args = nil,
+					options = {
+						["ignore-case"] = {
+							value = "--ignore-case",
+							icon = "[I]",
+							desc = "ignore case",
+						},
+					},
+				},
+				-- call rust code by nvim-oxi to replace
+				["oxi"] = {
+					cmd = "oxi",
+					args = {},
+					options = {
+						["ignore-case"] = {
+							value = "i",
+							icon = "[I]",
+							desc = "ignore case",
+						},
+					},
+				},
+				["sd"] = {
+					cmd = "sd",
+					options = {},
+				},
+			},
+			default = {
+				find = {
+					--pick one of item in find_engine
+					cmd = "rg",
+					options = { "ignore-case" },
+				},
+				replace = {
+					--pick one of item in replace_engine
+					cmd = "sed",
+				},
+			},
+			replace_vim_cmd = "cdo",
+			is_open_target_win = true, --open file on opener window
+			is_insert_mode = false, -- start open panel on is_insert_mode
+			is_block_ui_break = false, -- mapping backspace and enter key to avoid ui break
+			open_template = {
+				-- an template to use on open function
+				-- see the 'custom function' section below to learn how to configure the template
+				-- { search_text = 'text1', replace_text = '', path = "" }
+			},
+		},
+	},
+
+	{
+		dir = "@rosePine@",
+		name = "rose-pine",
+	},
+
+	-- Floating terminal plugin for Vim
 	-- Vim sugar for the UNIX shell commands
-	{ "tpope/vim-eunuch" },
+	{ "chrisgrieser/nvim-genghis", dependencies = "stevearc/dressing.nvim" },
 
 	-- Start a * or # search from a visual selection
-	{ "nelstrom/vim-visual-star-search" },
+	{
+		name = "vim-visual-star-search",
+		dir = "@vimVisualStarSearch@",
+	},
 
 	-- Visually select increasingly larger regions of text
-	{ "terryma/vim-expand-region" },
+	{
+		name = "vim-expand-region",
+		dir = "@vimExpandRegion@",
+	},
 
 	-- Incremental search improved in Vim
 	{ "haya14busa/is.vim", lazy = false },
 
-	-- Neovim configuration helper
-	{ "folke/neoconf.nvim", cmd = "Neoconf" },
-
-	-- Neovim development helper
-	{ "folke/neodev.nvim" },
-
-	-- Mason's LSP configuration for Neovim
-	{ "williamboman/mason-lspconfig.nvim" },
-
-	-- Quickstart configurations for the Nvim LSP client
-	{ "neovim/nvim-lspconfig" },
-	--
 	-- Show function signature when you type
 	{
-		"ray-x/lsp_signature.nvim",
+		dir = "@lspSignature@",
+		name = "LSP Signature",
 		lazy = false,
-	},
-
-	-- Syntax highlighting and indentation for MDX (Markdown + JSX)
-	{
-		ft = "markdown.mdx",
-		"jxnblk/vim-mdx-js",
 	},
 
 	-- Surroundings in Neovim with ease
@@ -58,6 +699,7 @@ return {
 
 	-- A dark One Color Scheme for Neovim >0.5 written in Lua.
 	{
+		name = "onedark",
 		dir = "@oneDark@",
 		init = function()
 			require("onedark").setup({
@@ -89,14 +731,3 @@ return {
 		end,
 	},
 }
-
--- {
---   "zbirenbaum/copilot-cmp",
---   after = { "copilot.lua" },
---   lazy = false,
---   config = function()
---     require("copilot_cmp").setup({})
---   end,
--- },
-
--- { "lukas-reineke/indent-blankline.nvim" },

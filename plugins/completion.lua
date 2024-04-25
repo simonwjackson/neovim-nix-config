@@ -3,6 +3,8 @@ return {
 		name = "nvim-cmp",
 		dir = "@nvimCmp@",
 		dependencies = {
+			{ "L3MON4D3/LuaSnip" },
+			"saadparwaiz1/cmp_luasnip",
 			{
 				dir = "@cmpNvimLsp@",
 				name = "cmp-nvim-lsp",
@@ -59,7 +61,6 @@ return {
 		init = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
-			-- require("copilot_cmp").setup()
 
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

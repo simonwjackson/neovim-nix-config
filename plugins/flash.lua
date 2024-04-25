@@ -1,9 +1,10 @@
 -- An EasyMotion-like plugin allowing you to jump anywhere in a document with as few keystrokes as possible.
 
-local labels = "fjdkslaghrueiwovmcnxbzty"
+local labels = "asdfghjklqwertyuiopzxcvbnm"
 
 return {
 	{
+		name = "flash",
 		dir = "@flash@",
 		event = "VeryLazy",
 		---@type Flash.Config
@@ -83,6 +84,14 @@ return {
 						return not vim.api.nvim_win_get_config(win).focusable
 					end,
 				},
+				-- Optional trigger character that needs to be typed before
+				-- a jump label can be used. It's NOT recommended to set this,
+				-- unless you know what you're doing
+				trigger = "",
+				-- max pattern length. If the pattern length is equal to this
+				-- labels will no longer be skipped. When it exceeds this length
+				-- it will either end in a jump or terminate the search
+				max_length = false, ---@type number|false
 			},
 			jump = {
 				-- save location in the jumplist
@@ -109,6 +118,8 @@ return {
 			label = {
 				-- allow uppercase labels
 				uppercase = true,
+				-- add any labels with the correct case here, that you want to exclude
+				exclude = "",
 				-- add a label for the first match in the current window.
 				-- you can always jump to the first match with `<CR>`
 				current = true,
