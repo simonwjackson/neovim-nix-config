@@ -4,8 +4,12 @@ return {
 	{
 		name = "toggleterm",
 		dir = "@toggleterm@",
-		config = function()
-			require("toggleterm").setup()
+		init = function()
+			require("toggleterm").setup({
+				shade_terminals = true,
+				persist_size = false,
+			})
+
 			function _G.set_terminal_keymaps()
 				local opts = { buffer = 0 }
 				vim.keymap.set("t", "<A-Esc>", [[<C-\><C-n>]], opts)
@@ -19,13 +23,48 @@ return {
 			end
 
 			vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+			local Terminal = require("toggleterm.terminal").Terminal
+			local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+			local generic_term = Terminal:new({ name = "toggleterm", direction = "float", hidden = true })
+
+			function __Lazygit_Toggle()
+				lazygit:toggle()
+			end
+
+			function __GenericTerm_Toggle()
+				generic_term:toggle()
+			end
 		end,
 		keys = {
 			{
 				"<A-.>",
-				"<CMD>ToggleTerm direction=vertical name=toggleterm<CR>",
+				function()
+					__GenericTerm_Toggle()
+				end,
 				mode = { "n", "t", "x", "v" },
 				desc = "Vertical Split Terminal",
+			},
+			{
+				"<A-S-.>",
+				function()
+					local cmd = vim.api.nvim_command
+
+					cmd("tabnew")
+					-- cmd("LualineRenameTab Terminal")
+					cmd("terminal nvr -c 'terminal' -c 'startinsert' '+let g:auto_session_enabled = v:true'")
+				end,
+				mode = { "n", "t", "x", "v" },
+				desc = "Vertical Split Terminal",
+			},
+
+			{
+				"<leader>gg",
+				function()
+					__Lazygit_Toggle()
+				end,
+				mode = { "n", "x", "v" },
+				desc = "Lazygit",
 			},
 		},
 	},

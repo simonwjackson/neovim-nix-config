@@ -72,27 +72,46 @@ return {
 			},
 		},
 	},
-	{
-		name = "windows",
-		dir = "@windows@",
-		dependencies = {
-			{
-				dir = "@middleclass@",
-				name = "middleclass",
-			},
-			{
-				dir = "@animation@",
-				name = "animation",
-			},
-		},
-		config = function()
-			vim.o.winwidth = 10
-			vim.o.winminwidth = 10
-			vim.o.equalalways = false
-
-			require("windows").setup()
-		end,
-	},
+	-- {
+	-- 	name = "windows",
+	-- 	enable = false,
+	-- 	dir = "@windows@",
+	-- 	dependencies = {
+	-- 		{
+	-- 			dir = "@middleclass@",
+	-- 			name = "middleclass",
+	-- 		},
+	-- 		{
+	-- 			dir = "@animation@",
+	-- 			name = "animation",
+	-- 		},
+	-- 	},
+	-- 	config = function()
+	-- 		-- vim.o.winwidth = 45
+	-- 		-- vim.o.winminwidth = 50
+	-- 		vim.o.equalalways = false
+	--
+	-- 		require("windows").setup({
+	-- 			autowidth = { --		       |windows.autowidth|
+	-- 				enable = true,
+	-- 				winwidth = 5, --		        |windows.winwidth|
+	-- 				filetype = { --	      |windows.autowidth.filetype|
+	-- 					help = 2,
+	-- 				},
+	-- 			},
+	-- 			ignore = { --			  |windows.ignore|
+	-- 				buftype = { "terminal", "quickfix" },
+	-- 				filetype = { "toggleterm" },
+	-- 			},
+	-- 			animation = {
+	-- 				enable = true,
+	-- 				duration = 300,
+	-- 				fps = 30,
+	-- 				easing = "in_out_sine",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	-- {
 	-- 	"nvim-zh/colorful-winsep.nvim",
 	-- 	config = true,
@@ -102,9 +121,6 @@ return {
 		dir = "@smartSplits@",
 		name = "smart-splits",
 		keys = {
-			-- require('smart-splits').move_cursor_down()
-			-- require('smart-splits').move_cursor_left()
-			-- require('smart-splits').move_cursor_right()
 			{
 				"<A-k>",
 				function()
@@ -176,13 +192,9 @@ return {
 		},
 		opts = {
 			-- Ignored buffer types (only while resizing)
-			ignored_buftypes = {
-				"nofile",
-				"quickfix",
-				"prompt",
-			},
+			-- ignored_buftypes = {},
 			-- Ignored filetypes (only while resizing)
-			ignored_filetypes = { "NvimTree" },
+			-- ignored_filetypes = {},
 			-- the default number of lines/columns to resize by at a time
 			default_amount = 3,
 			-- Desired behavior when your cursor is at an edge and you
@@ -634,16 +646,17 @@ return {
 		end,
 	},
 
-	{
-		dir = "@cutlass@",
-		name = "cutlass",
-		opts = {
-			exclude = {
-				"nd",
-				"nD",
-			},
-		},
-	},
+	--{
+	--	dir = "@cutlass@",
+	--	name = "cutlass",
+	--	opts = {
+	--		exclude = {
+	--			"nd",
+	--			"nD",
+	--		},
+	--	},
+	--},
+
 	-- TODO: Move into telescope file
 	{
 		dir = "@telescopeUndo",

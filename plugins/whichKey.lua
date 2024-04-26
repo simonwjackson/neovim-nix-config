@@ -32,25 +32,13 @@
 local cmd = vim.api.nvim_command
 -- This is a lua version of vim which key that displays available keybindings in popup menu.
 
-vim.keymap.set("n", "lh", "<cmd>write<cr>", { desc = "Save file" })
-vim.keymap.set("n", "hl", "<cmd>write<cr>", { desc = "Save file" })
-vim.keymap.set("n", "<C-s>", "<cmd>write<CR>", { desc = "Save file (if modified)" })
-vim.keymap.set("n", "jk", "<cr>", { desc = "Return" })
-vim.keymap.set("n", "kj", "<cr>", { desc = "Return" })
-vim.keymap.set("i", "lh", "<cmd>write<cr>", { desc = "Save file" })
-vim.keymap.set("i", "hl", "<cmd>write<cr>", { desc = "Save file" })
-vim.keymap.set("i", "<C-s>", "<cmd>write<CR>", { desc = "Save file (if modified)" })
-vim.keymap.set("i", "jk", "<cr>", { desc = "Return" })
-vim.keymap.set("i", "kj", "<cr>", { desc = "Return" })
-
--- vim.keymap.set("n", "<Esc>", ":noh <CR>", { desc = "Clear highlights" })
-
 return {
 	{
 		name = "WhichKey",
 		dir = "@whichKey@",
 		event = "VeryLazy",
 		keys = {
+			{ "<Esc>", ":noh <CR>", desc = "Clear highlights" },
 			{
 				"<A-s>",
 				[[<C-\><C-n>:silent! !tmux choose-tree<cr>]],

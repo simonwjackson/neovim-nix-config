@@ -2,7 +2,7 @@
   description = "My own Neovim flake with plugins";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     flake-utils.url = "github:numtide/flake-utils";
 
     # Neovim plugins
@@ -145,7 +145,7 @@
           inherit system;
           overlays = [
             inputs.awesome-neovim-plugins.overlays.default
-            inputs.neovim-nightly-overlay.overlay
+            # inputs.neovim-nightly-overlay.overlay
             (final: prev: {
               vimPlugins =
                 prev.vimPlugins
