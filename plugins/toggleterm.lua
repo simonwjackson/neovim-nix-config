@@ -51,8 +51,8 @@ return {
 					local cmd = vim.api.nvim_command
 
 					cmd("tabnew")
-					-- cmd("LualineRenameTab Terminal")
-					cmd("terminal nvr -c 'terminal' -c 'startinsert' '+let g:auto_session_enabled = v:true'")
+					cmd("LualineRenameTab Term")
+					cmd("terminal nvr -c 'terminal' -c 'startinsert' '+let g:auto_session_enabled = v:false'")
 				end,
 				mode = { "n", "t", "x", "v" },
 				desc = "Vertical Split Terminal",

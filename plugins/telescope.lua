@@ -134,12 +134,12 @@ return {
 				desc = "Find in current buffer",
 			},
 			{
-				"<leader>cm",
+				"<leader>gc",
 				"<cmd> Telescope git_commits <CR>",
 				desc = "Git commits",
 			},
 			{
-				"<leader>gt",
+				"<leader>gs",
 				"<cmd> Telescope git_status <CR>",
 				desc = "Git status",
 			},
