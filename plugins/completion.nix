@@ -3,7 +3,9 @@
     pkgs.luajitPackages.luacheck
   ];
   replace = {
-    nvimCmp = pkgs.vimPlugins.nvim-cmp;
+    nvimCmp = pkgs.awesomeNeovimPlugins.nvim-cmp;
+    luaSnip = pkgs.awesomeNeovimPlugins.LuaSnip;
+    cmpLuaSnip = pkgs.vimPlugins.cmp_luasnip;
     cmpNvimLua = pkgs.vimPlugins.cmp-nvim-lua;
     cmpNvimLsp = pkgs.vimPlugins.cmp-nvim-lsp;
     cmpBuffer = pkgs.vimPlugins.cmp-buffer;

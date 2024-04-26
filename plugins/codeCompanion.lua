@@ -1,6 +1,7 @@
 return {
 	{
 		dir = "@codeCompanion@",
+		name = "code-companion",
 		config = function()
 			require("codecompanion").setup({
 				strategies = {
@@ -20,7 +21,7 @@ return {
 		end,
 		dependencies = {
 			{
-				name = "Edgy.nvim",
+				name = "edgy",
 				dir = "@edgyNvim@",
 				event = "VeryLazy",
 				init = function()
@@ -34,21 +35,20 @@ return {
 				},
 			},
 			{
-				name = "plenary.nvim",
-				dir = "@plenaryNvim@",
+				name = "plenary",
+				dir = "@plenary@",
 			},
 			{
-				name = "Treesitter - Yaml",
+				name = "treesitter-yaml",
 				dir = "@treesitterYaml@",
 			},
 			{
-				name = "Telescope",
+				name = "telescope",
 				dir = "@telescope@",
 			},
 			{
-				name = "Dressing.nvim",
+				name = "dressing",
 				dir = "@dressing@", -- Optional: Improves the default Neovim UI
-				opts = {},
 			},
 		},
 	},

@@ -12,6 +12,7 @@
   ];
 
   replace = {
-    flash = pkgs.awesomeNeovimPlugins.flash-nvim;
+    gitsigns = pkgs.awesomeNeovimPlugins.gitsigns-nvim;
+    whichKey = pkgs.awesomeNeovimPlugins.which-key-nvim;
   };
 }

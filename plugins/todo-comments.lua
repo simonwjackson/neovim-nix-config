@@ -2,9 +2,13 @@
 
 return {
 	{
-		"folke/todo-comments.nvim",
+		dir = "@todoComments@",
+		name = "todo-comments",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{
+				name = "plenary",
+				dir = "@plenary@",
+			},
 		},
 		opts = {
 			signs = true, -- show icons in the signs column

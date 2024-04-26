@@ -12,6 +12,6 @@
   ];
 
   replace = {
-    flash = pkgs.awesomeNeovimPlugins.flash-nvim;
+    dressing = pkgs.awesomeNeovimPlugins.dressing-nvim;
   };
 }

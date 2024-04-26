@@ -12,6 +12,7 @@
   ];
 
   replace = {
-    flash = pkgs.awesomeNeovimPlugins.flash-nvim;
+    diffView = pkgs.awesomeNeovimPlugins.diffview-nvim;
+    plenary = pkgs.awesomeNeovimPlugins.plenary-nvim;
   };
 }

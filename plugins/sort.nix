@@ -6,6 +6,6 @@
   };
 
   replace = {
-    nvimContextVt = pkgs.awesomeNeovimPlugins.nvim-context-vt;
+    sort = pkgs.awesomeNeovimPlugins.sort-nvim;
   };
 }

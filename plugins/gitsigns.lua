@@ -2,9 +2,13 @@
 
 return {
 	{
-		"lewis6991/gitsigns.nvim",
+		name = "gitsigns",
+		dir = "@gitsigns@",
 		dependencies = {
-			"folke/which-key.nvim",
+			{
+				name = "which-key",
+				dir = "@whichKey@",
+			},
 		},
 		config = function()
 			local wk = require("which-key")

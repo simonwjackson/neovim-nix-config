@@ -1,6 +1,7 @@
 return {
 	{
-		"numToStr/Comment.nvim",
+		dir = "@comment@",
+		name = "comment",
 		lazy = false,
 		opts = {
 			---Add a space b/w comment and the line

@@ -2,13 +2,10 @@
 
 return {
 	{
-		"haringsrob/nvim_context_vt",
+		dir = "@nvimContextVt@",
+		name = "nvim-context-vt",
 		lazy = false,
-		dependencies = {
-			{
-				dir = "@nvimTreesitter@",
-			},
-		},
+		dependencies = {},
 		opts = {
 			-- Enable by default. You can disable and use :NvimContextVtToggle to maually enable.
 			-- Default: true

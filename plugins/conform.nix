@@ -24,8 +24,6 @@
   ];
 
   replace = {
-    flash = pkgs.vimPlugins.flash;
-    formatterNvim = pkgs.vimPlugins.formatter-nvim;
-    shfmt = pkgs.shfmt;
+    conform = pkgs.awesomeNeovimPlugins.conform-nvim;
   };
 }

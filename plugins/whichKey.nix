@@ -4,6 +4,6 @@
     pkgs.lazygit
   ];
   replace = {
-    whichKey = pkgs.vimPlugins.which-key;
+    whichKey = pkgs.awesomeNeovimPlugins.which-key-nvim;
   };
 }

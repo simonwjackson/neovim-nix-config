@@ -1,52 +1,44 @@
 {pkgs}: {
   packages = [
+    pkgs.ripgrep
   ];
 
   environment = {
   };
 
   replace = {
-    # oneDark = pkgs.vimPlugins.onedark-colorscheme;
-    oneDark = pkgs.awesomeNeovimPlugins.onedark-nvim;
-    rosePine = pkgs.awesomeNeovimPlugins.rose-pine-neovim;
-    # INFO: some of these need to be moved to other plugins
-    vimVisualStarSearch = pkgs.vimPlugins.vim-visual-star-search;
-    nvimLspconfig = pkgs.vimPlugins.nvim-lspconfig;
-    lspSignature = pkgs.awesomeNeovimPlugins.lsp-signature-nvim;
-    nvimSurround = pkgs.vimPlugins.nvim-surround;
-    autoSession = pkgs.vimPlugins.auto-session;
-    plenaryNvim = pkgs.awesomeNeovimPlugins.plenary-nvim;
-    telescopeNvim = pkgs.vimPlugins.telescope-nvim;
-    dressingNvim = pkgs.vimPlugins.dressing-nvim;
-    commentNvim = pkgs.vimPlugins.comment-nvim;
-    diffviewNvim = pkgs.vimPlugins.diffview-nvim;
-    focusNvim = pkgs.vimPlugins.focus-nvim;
-    whichKeyNvim = pkgs.vimPlugins.which-key-nvim;
-    gitsignsNvim = pkgs.vimPlugins.gitsigns-nvim;
-    lualineNvim = pkgs.vimPlugins.lualine-nvim;
-    nuiNvim = pkgs.vimPlugins.nui-nvim;
-    noiceNvim = pkgs.vimPlugins.noice-nvim;
-    nvimLint = pkgs.vimPlugins.nvim-lint;
-    nvimOsc52 = pkgs.vimPlugins.nvim-osc52;
-    nvimTsAutotag = pkgs.vimPlugins.nvim-ts-autotag;
-    nvimContextVt = pkgs.vimPlugins.nvim_context_vt;
-    octoNvim = pkgs.vimPlugins.octo-nvim;
-    nvimWebDevicons = pkgs.vimPlugins.nvim-web-devicons;
-    nvterm = pkgs.vimPlugins.nvterm;
-    sortNvim = pkgs.vimPlugins.sort-nvim;
-    ripgrep = pkgs.ripgrep;
-    fd = pkgs.fd;
-    vimDadbodUi = pkgs.vimPlugins.vim-dadbod-ui;
-    vimDadbod = pkgs.vimPlugins.vim-dadbod;
-    vimDadbodCompletion = pkgs.vimPlugins.vim-dadbod-completion;
-    vimHighlightedyank = pkgs.vimPlugins.vim-highlightedyank;
-    winshiftNvim = pkgs.vimPlugins.winshift-nvim;
-    zenModeNvim = pkgs.vimPlugins.zen-mode-nvim;
-    mkdir = pkgs.awesomeNeovimPlugins.mkdir-nvim;
+    animation = pkgs.awesomeNeovimPlugins.animation-nvim;
+    betterEscape = pkgs.awesomeNeovimPlugins.better-escape-nvim;
+    boole = pkgs.awesomeNeovimPlugins.boole-nvim;
+    buffDelete = pkgs.awesomeNeovimPlugins.bufdelete-nvim;
     chainsaw = pkgs.awesomeNeovimPlugins.nvim-chainsaw;
-    pqf = pkgs.awesomeNeovimPlugins.nvim-pqf;
+    cutlass = pkgs.awesomeNeovimPlugins.cutlass-nvim;
+    diffview = pkgs.awesomeNeovimPlugins.diffview-nvim;
+    dressing = pkgs.awesomeNeovimPlugins.dressing-nvim;
+    gitBlame = pkgs.awesomeNeovimPlugins.git-blame-nvim;
+    gitDev = pkgs.awesomeNeovimPlugins.git-dev-nvim;
+    isVim = pkgs.vimPlugins.is-vim;
+    lspSignature = pkgs.awesomeNeovimPlugins.lsp-signature-nvim;
+    middleclass = pkgs.vimPlugins.middleclass;
+    mkdir = pkgs.awesomeNeovimPlugins.mkdir-nvim;
     neodim = pkgs.awesomeNeovimPlugins.neodim;
+    numb = pkgs.awesomeNeovimPlugins.numb-nvim;
+    nvimScrollbar = pkgs.awesomeNeovimPlugins.nvim-scrollbar;
+    nvimSpectre = pkgs.awesomeNeovimPlugins.nvim-spectre;
+    obsidian = pkgs.awesomeNeovimPlugins.obsidian-nvim;
+    oneDark = pkgs.awesomeNeovimPlugins.onedark-nvim;
     overseer = pkgs.awesomeNeovimPlugins.overseer-nvim;
+    plenary = pkgs.awesomeNeovimPlugins.plenary-nvim;
+    pqf = pkgs.awesomeNeovimPlugins.nvim-pqf;
+    rosePine = pkgs.awesomeNeovimPlugins.rose-pine-neovim;
+    sentiment = pkgs.awesomeNeovimPlugins.sentiment-nvim;
+    smartSplits = pkgs.awesomeNeovimPlugins.smart-splits-nvim;
+    surround = pkgs.awesomeNeovimPlugins.nvim-surround;
+    telescope = pkgs.awesomeNeovimPlugins.telescope-nvim;
+    telescopeTabs = pkgs.awesomeNeovimPlugins.telescope-tabs;
+    telescopeUndo = pkgs.awesomeNeovimPlugins.telescope-undo-nvim;
+    vimHighlightedyank = pkgs.vimPlugins.vim-highlightedyank;
+    vimVisualStarSearch = pkgs.vimPlugins.vim-visual-star-search;
+    windows = pkgs.awesomeNeovimPlugins.windows-nvim;
   };
 }
-#

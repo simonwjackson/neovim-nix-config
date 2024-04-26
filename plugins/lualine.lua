@@ -21,7 +21,8 @@ end
 
 return {
 	{
-		"nvim-lualine/lualine.nvim",
+		dir = "@lualine@",
+		name = "lualine",
 		lazy = false,
 		config = function()
 			vim.g.my_global_var = true

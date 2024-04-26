@@ -9,13 +9,12 @@
   ];
 
   extraPackages = [
-    pkgs.cowsay
   ];
 
   replace = {
     gitWorktreeNvim = pkgs.vimPlugins.git-worktree-nvim;
-    whichKeyNvim = pkgs.vimPlugins.which-key-nvim;
-    plenaryNvim = pkgs.vimPlugins.plenary-nvim;
-    telescope = pkgs.vimPlugins.telescope-nvim;
+    whichKeyNvim = pkgs.awesomeNeovimPlugins.which-key-nvim;
+    plenaryNvim = pkgs.awesomeNeovimPlugins.plenary-nvim;
+    telescope = pkgs.awesomeNeovimPlugins.telescope-nvim;
   };
 }

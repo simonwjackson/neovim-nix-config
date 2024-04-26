@@ -6,6 +6,6 @@
   };
 
   replace = {
-    nvimContextVt = pkgs.awesomeNeovimPlugins.nvim-context-vt;
+    toggleterm = pkgs.awesomeNeovimPlugins.toggleterm-nvim;
   };
 }

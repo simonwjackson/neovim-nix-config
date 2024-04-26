@@ -2,7 +2,8 @@
 
 return {
 	{
-		"pwntester/octo.nvim",
+		name = "octo",
+		dir = "@octo@",
 		lazy = false,
 		enabled = false,
 		dependencies = {
@@ -10,8 +11,14 @@ return {
 				dir = "@plenary@",
 				name = "plenary",
 			},
-			"nvim-telescope/telescope.nvim",
-			"kyazdani42/nvim-web-devicons",
+			{
+				name = "nvim-web-devicons",
+				dir = "@nvimWebDevicons@",
+			},
+			{
+				name = "telescope",
+				dir = "@telescope@",
+			},
 		},
 		opts = {
 			default_remote = { "upstream", "origin" }, -- order to try remotes

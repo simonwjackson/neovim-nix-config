@@ -12,7 +12,8 @@ end
 
 return {
 	{
-		"nvim-telescope/telescope.nvim",
+		name = "telescope",
+		dir = "@telescope@",
 		lazy = false,
 		config = function()
 			require("telescope").load_extension("advanced_git_search")
@@ -66,7 +67,7 @@ return {
 				function()
 					os.execute("nix run nixpkgs#tmux -- switch-client -l > /dev/null 2>&1")
 				end,
-				"Tmux: Previous session",
+				desc = "Project: Notes",
 			},
 
 			{
@@ -77,7 +78,7 @@ return {
 					)
 					os.execute('nix run nixpkgs#tmux -- switch-client -t "notes"  > /dev/null 2>&1')
 				end,
-				"Tmux: Previous session",
+				desc = "Project: previous",
 			},
 
 			{
@@ -176,27 +177,38 @@ return {
 		branch = "0.1.x",
 		dependencies = {
 			{
-				"aaronhallaert/advanced-git-search.nvim",
+				dir = "@advancedGitSearch@",
+				name = "advanced-git-search",
 				cmd = { "AdvancedGitSearch" },
 				dependencies = {
-					"tpope/vim-fugitive",
-					-- to open commits in browser with fugitive
-					"tpope/vim-rhubarb",
-					-- optional: to replace the diff from fugitive with diffview.nvim
-					-- (fugitive is still needed to open in browser)
-					"sindrets/diffview.nvim",
+					{
+						dir = "@vimFugitive@",
+						name = "vim-fugitive",
+					},
+					{
+						name = "vim-rhubarb",
+						dir = "@vimRhubarb@",
+					},
+					dir = "@diffview@",
+					name = "diffview",
 				},
 			},
 			{
 				dir = "@plenary@",
 				name = "plenary",
 			},
-			"BurntSushi/ripgrep",
-			"sharkdp/fd",
 			{
-				dir = "@nvimTreesitter@",
+				name = "ripgrep",
+				dir = "@ripgrep@",
 			},
-			"nvim-tree/nvim-web-devicons",
+			{
+				name = "fd",
+				dir = "@fd@",
+			},
+			{
+				dir = "@nvimWebDevicons@",
+				name = "nvim-web-devicons",
+			},
 		},
 	},
 }

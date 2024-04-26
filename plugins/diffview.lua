@@ -2,7 +2,8 @@
 
 return {
 	{
-		"sindrets/diffview.nvim",
+		name = "diffview",
+		dir = "@diffView@",
 		dependencies = {
 			{
 				dir = "@plenary@",

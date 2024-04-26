@@ -2,7 +2,7 @@
 
 return {
 	{
-		name = "git-worktree.nvim",
+		name = "git-worktree",
 		dir = "@gitWorktreeNvim@",
 		lazy = false,
 		config = function()
@@ -47,15 +47,15 @@ return {
 		},
 		dependencies = {
 			{
-				name = "WhichKey",
+				name = "which-key",
 				dir = "@whichKeyNvim@",
 			},
 			{
-				name = "plenary.nvim",
+				name = "plenary",
 				dir = "@plenaryNvim@",
 			},
 			{
-				name = "Telescope",
+				name = "telescope",
 				dir = "@telescope@",
 			},
 		},

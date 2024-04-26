@@ -2,7 +2,8 @@
 
 return {
 	{
-		"sQVe/sort.nvim",
+		dir = "@sort@",
+		name = "sort",
 		lazy = false,
 		opts = {
 			delimiters = {

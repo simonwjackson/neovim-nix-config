@@ -6,6 +6,6 @@
   };
 
   replace = {
-    nvimContextVt = pkgs.awesomeNeovimPlugins.nvim-context-vt;
+    osc52 = pkgs.vimPlugins.nvim-osc52;
   };
 }

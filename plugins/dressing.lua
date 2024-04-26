@@ -1,6 +1,7 @@
 return {
 	{
-		"stevearc/dressing.nvim",
+		name = "dressing",
+		dir = "@dressing@",
 		opts = {
 			input = {
 				-- Set to false to disable the vim.ui.input implementation

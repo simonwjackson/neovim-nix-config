@@ -2,7 +2,8 @@
 
 return {
 	{
-		"folke/zen-mode.nvim",
+		name = "zen-mode",
+		dir = "@zenMode@",
 		lazy = false,
 		opts = {
 			{

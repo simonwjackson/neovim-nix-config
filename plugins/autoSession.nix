@@ -6,6 +6,6 @@
   };
 
   replace = {
-    nvimContextVt = pkgs.awesomeNeovimPlugins.nvim-context-vt;
+    autoSession = pkgs.awesomeNeovimPlugins.auto-session;
   };
 }

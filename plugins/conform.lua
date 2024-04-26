@@ -1,6 +1,7 @@
 return {
 	{
-		"stevearc/conform.nvim",
+		name = "conform",
+		dir = "@conform@",
 		opts = {
 			formatters = {
 				shfmt = {

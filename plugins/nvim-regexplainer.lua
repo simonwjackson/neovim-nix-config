@@ -2,7 +2,8 @@
 
 return {
 	{
-		"bennypowers/nvim-regexplainer",
+		dir = "@regexplainer@",
+		name = "regexplainer",
 		lazy = false,
 		opts = {
 			mode = "narrative",
@@ -36,10 +37,8 @@ return {
 			},
 		},
 		dependencies = {
-			-- {
-			-- 	dir = "@nvimTreesitter@",
-			-- },
-			"MunifTanjim/nui.nvim",
+			name = "nui",
+			dir = "@nui@",
 		},
 	},
 }

@@ -6,6 +6,6 @@
   };
 
   replace = {
-    nvimContextVt = pkgs.awesomeNeovimPlugins.nvim-context-vt;
+    zenMode = pkgs.awesomeNeovimPlugins.zen-mode-nvim;
   };
 }

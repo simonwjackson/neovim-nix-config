@@ -4,7 +4,8 @@
 
 return {
 	{
-		"rmagatti/auto-session",
+		dir = "@autoSession@",
+		name = "auto-session",
 		lazy = false,
 		opts = {
 			log_level = "error",
