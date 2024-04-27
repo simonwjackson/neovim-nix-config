@@ -1,15 +1,5 @@
 -- A highly extendable fuzzy finder over lists that is based on the Lua programming language and the Telescope picker.
 
-function OpenLfInFloaterm()
-	local path = vim.fn.shellescape(vim.fn.fnamemodify(vim.fn.expand("%:p"), ":!"))
-
-	vim.cmd(
-		"FloatermNew --title=Files --name=files --height=0.75 --width=0.75 --wintype=float $SHELL -c 'lf "
-			.. path
-			.. "'"
-	)
-end
-
 return {
 	{
 		name = "telescope",
@@ -81,13 +71,6 @@ return {
 				desc = "Project: previous",
 			},
 
-			{
-				"<leader>fe",
-				function()
-					OpenLfInFloaterm()
-				end,
-				desc = "File explorer",
-			},
 			{
 				"<leader>fn",
 				"<cmd>enew<cr>",

@@ -27,6 +27,7 @@ return {
 			local Terminal = require("toggleterm.terminal").Terminal
 			local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
 			local generic_term = Terminal:new({ name = "toggleterm", direction = "float", hidden = true })
+			local lf_term = Terminal:new({ cmd = "lf", name = "lf", direction = "float", hidden = true })
 
 			function __Lazygit_Toggle()
 				lazygit:toggle()
@@ -34,6 +35,10 @@ return {
 
 			function __GenericTerm_Toggle()
 				generic_term:toggle()
+			end
+
+			function __Lf_Toggle()
+				lf_term:toggle()
 			end
 		end,
 		keys = {
@@ -56,6 +61,14 @@ return {
 				end,
 				mode = { "n", "t", "x", "v" },
 				desc = "Vertical Split Terminal",
+			},
+			{
+				"<leader>fe",
+				function()
+					__Lf_Toggle()
+				end,
+				mode = { "n", "x", "v" },
+				desc = "File Explorer",
 			},
 
 			{

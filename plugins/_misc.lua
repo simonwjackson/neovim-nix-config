@@ -18,7 +18,7 @@ return {
 		ft = "markdown",
 		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
 		-- event = {
-		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+		--   -- If you want to use the home  '~' here you need to call 'vim.fn.expand'.
 		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
 		--   "BufReadPre path/to/my-vault/**.md",
 		--   "BufNewFile path/to/my-vault/**.md",
@@ -302,11 +302,14 @@ return {
 	-- },
 	-- {
 	-- 	"miversen33/sunglasses.nvim",
-	-- 	config = true,
-	-- 	opts = {
-	-- 		filter_type = "NOSYNTAX",
-	-- 		filter_percent = 0.65,
-	-- 	},
+	-- 	init = function()
+	-- 		require("sunglasses").setup()
+	-- 		vim.cmd("SunglassesDisable")
+	-- 	end,
+	-- 	-- opts = {
+	-- 	-- 	filter_type = "NOSYNTAX",
+	-- 	-- 	filter_percent = 0 .65,
+	-- 	-- },
 	-- },
 	-- {
 	-- 	"folke/twilight.nvim",
