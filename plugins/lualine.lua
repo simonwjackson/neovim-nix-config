@@ -78,7 +78,7 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					-- lualine_a = { tmux_session, "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_b = { "branch", "overseer" },
 					lualine_c = {},
 
 					lualine_x = { tabs },

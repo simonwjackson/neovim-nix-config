@@ -58,7 +58,7 @@ return {
 		end,
 		keys = {
 			{
-				"<leader>t",
+				"<leader><tab>",
 				function()
 					require("telescope-tabs").list_tabs()
 				end,
@@ -420,6 +420,44 @@ return {
 		dir = "@overseer@",
 		name = "overseer",
 		opts = {},
+		keys = {
+			{
+				"<leader>to",
+				"<CMD>OverseerToggle<CR>",
+				desc = "Overseer: Task Overview",
+			},
+			{
+				"<leader>tl",
+				"<CMD>OverseerRun<CR>",
+				desc = "Overseer: Task List (or new cmd)",
+			},
+			{
+				"<leader>tq",
+				"<CMD>OverseerQuickAction<CR>",
+				desc = "Overseer: Previous Task Action",
+				c,
+			},
+			{
+				"<leader>tr",
+				"<CMD>OverseerQuickAction restart<CR>",
+				desc = "Overseer: Restart Last Action",
+			},
+			{
+				"<leader>tt",
+				"<CMD>OverseerQuickAction open float<CR>",
+				desc = "Overseer: Open Last Action",
+			},
+			{
+				"<leader>ta",
+				"<CMD>OverseerTaskAction<CR>",
+				desc = "Overseer: Task Actions",
+			},
+			{
+				"<leader>tc",
+				":OverseerRunCmd ",
+				desc = "Overseer: Run arbitrary command",
+			},
+		},
 	},
 	{
 		dir = "@diffview@",
