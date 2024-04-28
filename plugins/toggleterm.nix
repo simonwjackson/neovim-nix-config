@@ -1,5 +1,6 @@
 {pkgs}: {
   packages = [
+    pkgs.lf
   ];
 
   environment = {
