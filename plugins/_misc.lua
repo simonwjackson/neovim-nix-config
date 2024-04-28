@@ -446,9 +446,9 @@ return {
 				desc = "Overseer: Restart Last Action",
 			},
 			{
-				"<leader>tt",
+				"<leader>tp",
 				"<CMD>OverseerQuickAction open float<CR>",
-				desc = "Overseer: Open Last Action",
+				desc = "Overseer: Preview Last Action",
 			},
 			{
 				"<leader>ta",
