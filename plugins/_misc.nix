@@ -7,6 +7,7 @@
   };
 
   replace = {
+    just = pkgs.vimPlugins.tree-sitter-just;
     animation = pkgs.awesomeNeovimPlugins.animation-nvim;
     betterEscape = pkgs.awesomeNeovimPlugins.better-escape-nvim;
     boole = pkgs.awesomeNeovimPlugins.boole-nvim;

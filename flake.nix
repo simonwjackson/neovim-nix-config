@@ -8,6 +8,10 @@
     # Neovim plugins
 
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
+    tree-sitter-just = {
+      url = "github:IndianBoy42/tree-sitter-just";
+      flake = false;
+    };
 
     middleclass = {
       url = "github:anuvyklack/middleclass";
@@ -150,6 +154,11 @@
               vimPlugins =
                 prev.vimPlugins
                 // {
+                  tree-sitter-just = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.tree-sitter-just;
+                    src = inputs.tree-sitter-just;
+                  };
+
                   vim-dadbod-ui = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.vim-dadbod-ui;
                     src = inputs.vim-dadbod-ui;

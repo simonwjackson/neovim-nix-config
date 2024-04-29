@@ -4,7 +4,15 @@ local api = vim.api
 local cmd = vim.api.nvim_command
 
 return {
-
+	-- {
+	--   "direnv/direnv.vim",
+	--   lazy=false
+	-- },
+	{
+		dir = "@just@",
+		name = "just-syntax",
+		ft = "just",
+	},
 	-- {
 	-- 	"m4xshen/hardtime.nvim",
 	-- 	dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },

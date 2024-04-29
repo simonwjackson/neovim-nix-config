@@ -7,11 +7,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1714177286,
-        "narHash": "sha256-WJFmQj2im1OOfC2nCcBGQRk+qWiEXDkpo5Zc9QfP7h0=",
+        "lastModified": 1714238506,
+        "narHash": "sha256-vBIDUbob7Rl/3i1Wju1xVara9olgHR+NOmtfIlYP4Y0=",
         "owner": "m15a",
         "repo": "flake-awesome-neovim-plugins",
-        "rev": "173f3c8d6ec743c526d956ede47cc7e1fde57c6a",
+        "rev": "5eb50e129128f963750f0da8edc50860a1b64b82",
         "type": "github"
       },
       "original": {
@@ -231,11 +231,11 @@
     "fd": {
       "flake": false,
       "locked": {
-        "lastModified": 1713161840,
-        "narHash": "sha256-jCZ9Ww1mUJJC0aswL9RnBxc1OqV2RF6jMqVCHGSBDHQ=",
+        "lastModified": 1714192674,
+        "narHash": "sha256-eDJIySpCKJUy6Rk1OwqzuVeiyCWG1ze09P7evpiSOxc=",
         "owner": "sharkdp",
         "repo": "fd",
-        "rev": "bc6782624ef8d886c267c0f698e3895d9657df0e",
+        "rev": "85cbea8dcb6ca5c4de7402373b6b83ba146ca682",
         "type": "github"
       },
       "original": {
@@ -362,11 +362,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1714186392,
-        "narHash": "sha256-0xh5YFlWVQfVEr5GvNltzvC+HmTeLxCRPojFRFm3K/c=",
+        "lastModified": 1714273729,
+        "narHash": "sha256-fofoDllNhyNS24W9aICsiMkdqCYmrNOLI4osi3W579E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "31e8a89312b83355d4a7a670878fa3f62b3bbad3",
+        "rev": "cd08362300dd1336a078253e899990ad6da92fae",
         "type": "github"
       },
       "original": {
@@ -431,6 +431,7 @@
         "nixpkgs": "nixpkgs_2",
         "nvim-osc52": "nvim-osc52",
         "ripgrep": "ripgrep",
+        "tree-sitter-just": "tree-sitter-just",
         "vim-dadbod": "vim-dadbod",
         "vim-dadbod-completion": "vim-dadbod-completion",
         "vim-dadbod-ui": "vim-dadbod-ui",
@@ -465,6 +466,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tree-sitter-just": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711142481,
+        "narHash": "sha256-EnU0IpBr9i3+RFLzg7g6XuDSiuMBLGQ0eCJNPKeDohw=",
+        "owner": "IndianBoy42",
+        "repo": "tree-sitter-just",
+        "rev": "6c2f018ab1d90946c0ce029bb2f7d57f56895dff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IndianBoy42",
+        "repo": "tree-sitter-just",
         "type": "github"
       }
     },

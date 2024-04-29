@@ -9,6 +9,7 @@
     # Todo: move into nix plugin file as `runtimes`
     paths = [
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.bash])).dependencies
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.just])).dependencies
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.javascript])).dependencies
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.json])).dependencies
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.lua])).dependencies

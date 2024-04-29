@@ -27,7 +27,6 @@ return {
 			local Terminal = require("toggleterm.terminal").Terminal
 			local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
 			local generic_term = Terminal:new({ name = "toggleterm", direction = "float", hidden = true })
-			local lf_term = Terminal:new({ cmd = "lf", name = "lf", direction = "float", hidden = true })
 
 			function __Lazygit_Toggle()
 				lazygit:toggle()
@@ -38,6 +37,9 @@ return {
 			end
 
 			function __Lf_Toggle()
+				local filePath = vim.fn.shellescape(vim.fn.fnamemodify(vim.fn.expand("%:p"), ":!"))
+				local lf_term =
+					Terminal:new({ cmd = 'lf "' .. filePath .. '"', name = "lf", direction = "float", hidden = true })
 				lf_term:toggle()
 			end
 		end,
