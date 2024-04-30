@@ -39,7 +39,7 @@ return {
 			function __Lf_Toggle()
 				local filePath = vim.fn.shellescape(vim.fn.fnamemodify(vim.fn.expand("%:p"), ":!"))
 				local lf_term =
-					Terminal:new({ cmd = 'lf "' .. filePath .. '"', name = "lf", direction = "float", hidden = true })
+					Terminal:new({ cmd = "lf " .. filePath, name = "lf", direction = "float", hidden = true })
 				lf_term:toggle()
 			end
 		end,
