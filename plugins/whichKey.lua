@@ -28,6 +28,7 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{ "<Esc>", ":noh <CR>", desc = "Clear highlights" },
+			{ "<C-s>", ":update <CR>", desc = "Update file" },
 			{
 				"<A-s>",
 				[[<C-\><C-n>:silent! !tmux choose-tree<cr>]],
