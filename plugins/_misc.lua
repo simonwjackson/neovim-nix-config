@@ -21,9 +21,8 @@ return {
 	{
 		name = "obsidian",
 		dir = "@obsidian@",
-		version = "*", -- recommended, use latest release instead of latest commit
-		lazy = true,
-		ft = "markdown",
+		lazy = false,
+		-- ft = "markdown",
 		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
 		-- event = {
 		--   -- If you want to use the home  '~' here you need to call 'vim.fn.expand'.
@@ -37,18 +36,15 @@ return {
 				dir = "@plenary@",
 				name = "plenary",
 			},
-
-			-- see below for full list of optional dependencies 👇
 		},
 		opts = {
 			workspaces = {
 				{
 					name = "personal",
-					path = "/glacier/snowscape/notes",
+					-- path = "/glacier/snowscape/notes",
+					path = vim.fn.expand(os.getenv("NOTES_DIR")),
 				},
 			},
-
-			-- see below for full list of options 👇
 		},
 	},
 	{

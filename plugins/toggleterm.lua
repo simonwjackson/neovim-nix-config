@@ -27,6 +27,18 @@ return {
 			local Terminal = require("toggleterm.terminal").Terminal
 			local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
 			local generic_term = Terminal:new({ name = "toggleterm", direction = "float", hidden = true })
+			local notes_term = Terminal:new({
+				cmd = "nvim --cmd 'ObsidianToday'",
+				-- dir = vim.fn.shellescape(vim.fn.expand(os.getenv("NOTES_DIR"))),
+				-- dir = "~/notes",
+				name = "notes",
+				direction = "float",
+				hidden = true,
+			})
+
+			function __Notes_Toggle()
+				notes_term:toggle()
+			end
 
 			function __Lazygit_Toggle()
 				lazygit:toggle()
@@ -72,7 +84,13 @@ return {
 				mode = { "n", "x", "v" },
 				desc = "File Explorer",
 			},
-
+			{
+				"<leader>n",
+				function()
+					__Notes_Toggle()
+				end,
+				desc = "Notes",
+			},
 			{
 				"<leader>gg",
 				function()
