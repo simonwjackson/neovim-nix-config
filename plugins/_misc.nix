@@ -15,6 +15,7 @@
     chainsaw = pkgs.awesomeNeovimPlugins.nvim-chainsaw;
     cutlass = pkgs.awesomeNeovimPlugins.cutlass-nvim;
     diffview = pkgs.awesomeNeovimPlugins.diffview-nvim;
+    detour = pkgs.vimPlugins.detour;
     dressing = pkgs.awesomeNeovimPlugins.dressing-nvim;
     gitBlame = pkgs.awesomeNeovimPlugins.git-blame-nvim;
     gitDev = pkgs.awesomeNeovimPlugins.git-dev-nvim;

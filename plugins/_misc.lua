@@ -3,7 +3,91 @@ local g = vim.g
 local api = vim.api
 local cmd = vim.api.nvim_command
 
+-- This automated keypress skips for you the "[Process exited 0]" message
+-- that the embedded terminal shows.
+vim.api.nvim_create_autocmd({ "TermClose" }, {
+	buffer = vim.api.nvim_get_current_buf(),
+
+	callback = function()
+		vim.api.nvim_feedkeys("i", "n", false)
+	end,
+})
+
+local function get_notes_dir()
+	local notes_dir = os.getenv("NOTES_DIR")
+
+	if notes_dir then
+		return vim.fn.expand(notes_dir)
+	else
+		if vim.fn.has("win32") == 1 then
+			return vim.fn.expand("$USERPROFILE\\Documents")
+		elseif vim.fn.has("mac") == 1 then
+			return vim.fn.expand("$HOME/Documents")
+		else
+			local xdg_documents_dir = os.getenv("XDG_DOCUMENTS_DIR")
+			if xdg_documents_dir then
+				return vim.fn.expand(xdg_documents_dir)
+			else
+				return vim.fn.expand("$HOME/Documents")
+			end
+		end
+	end
+end
+
+local path = get_notes_dir()
+
 return {
+	{
+		name = "detour",
+		dir = "@detour@",
+		keys = {
+			{
+				"<c-w><enter>",
+				"<cmd>Detour<cr>",
+				desc = "Popup scratchpad",
+			},
+			{
+				"<c-w>.",
+				"<cmd>DetourCurrentWindow<cr>",
+				desc = "Convert split to popup",
+			},
+		},
+		init = function()
+			vim.keymap.set("n", "<leader>nj", function()
+				local ok = require("detour").Detour() -- open a detour popup
+				if not ok then
+					return
+				end
+
+				vim.cmd("ObsidianToday")
+				vim.bo.bufhidden = "delete" -- close the terminal when window closes
+			end)
+
+			vim.api.nvim_create_autocmd("BufWinEnter", {
+				pattern = "*",
+				callback = function(event)
+					local filetype = vim.bo[event.buf].filetype
+					local file_path = event.match
+
+					if file_path:match("/doc/") ~= nil then
+						-- Only run if the filetype is a help file
+						if filetype == "help" or filetype == "markdown" then
+							-- Get the newly opened help window
+							-- and attempt to open a Detour() float
+							local help_win = vim.api.nvim_get_current_win()
+							local ok = require("detour").Detour()
+
+							-- If we successfully create a float of the help file
+							-- Close the split
+							if ok then
+								vim.api.nvim_win_close(help_win, false)
+							end
+						end
+					end
+				end,
+			})
+		end,
+	},
 	-- {
 	--   "direnv/direnv.vim",
 	--   lazy=false
@@ -41,8 +125,7 @@ return {
 			workspaces = {
 				{
 					name = "personal",
-					-- path = "/glacier/snowscape/notes",
-					path = vim.fn.expand(os.getenv("NOTES_DIR")),
+					path = path,
 				},
 			},
 		},

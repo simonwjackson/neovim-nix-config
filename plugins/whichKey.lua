@@ -27,6 +27,7 @@ return {
 		dir = "@whichKey@",
 		event = "VeryLazy",
 		keys = {
+			{ "<leader>d", ":quit<cr>", desc = "Close buffer" },
 			{ "<Esc>", ":noh <CR>", desc = "Clear highlights" },
 			{ "<C-s>", ":update <CR>", desc = "Update file" },
 			{

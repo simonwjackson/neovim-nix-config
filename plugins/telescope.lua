@@ -52,24 +52,24 @@ return {
 			},
 		},
 		keys = {
-			{
-				"<leader>pp",
-				function()
-					os.execute("nix run nixpkgs#tmux -- switch-client -l > /dev/null 2>&1")
-				end,
-				desc = "Project: Notes",
-			},
-
-			{
-				"<leader>pn",
-				function()
-					os.execute(
-						'nix run nixpkgs#tmux -- new-session -d -c "/glacier/snowscape/notes" -s "notes" "nvim" > /dev/null 2>&1'
-					)
-					os.execute('nix run nixpkgs#tmux -- switch-client -t "notes"  > /dev/null 2>&1')
-				end,
-				desc = "Project: previous",
-			},
+			-- {
+			-- 	"<leader>pp",
+			-- 	function()
+			-- 		os.execute("nix run nixpkgs#tmux -- switch-client -l > /dev/null 2>&1")
+			-- 	end,
+			-- 	desc = "Project: Notes",
+			-- },
+			--
+			-- {
+			-- 	"<leader>pn",
+			-- 	function()
+			-- 		os.execute(
+			-- 			'nix run nixpkgs#tmux -- new-session -d -c "/glacier/snowscape/notes" -s "notes" "nvim" > /dev/null 2>&1'
+			-- 		)
+			-- 		os.execute('nix run nixpkgs#tmux -- switch-client -t "notes"  > /dev/null 2>&1')
+			-- 	end,
+			-- 	desc = "Project: previous",
+			-- },
 
 			{
 				"<leader>fn",

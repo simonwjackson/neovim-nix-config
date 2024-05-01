@@ -212,6 +212,22 @@
         "type": "github"
       }
     },
+    "detour": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707364827,
+        "narHash": "sha256-LUn9AjAirjbMSQ6Y6nqpEY/D52SleTnX7/a7aleH8Ow=",
+        "owner": "carbon-steel",
+        "repo": "detour.nvim",
+        "rev": "bf93c1420736a99c2b31e3260fcb89d92b811586",
+        "type": "github"
+      },
+      "original": {
+        "owner": "carbon-steel",
+        "repo": "detour.nvim",
+        "type": "github"
+      }
+    },
     "edgy-nvim": {
       "flake": false,
       "locked": {
@@ -422,6 +438,7 @@
         "cmp-spell": "cmp-spell",
         "cmp-treesitter": "cmp-treesitter",
         "cmp_luasnip": "cmp_luasnip",
+        "detour": "detour",
         "edgy-nvim": "edgy-nvim",
         "fd": "fd",
         "flake-utils": "flake-utils_2",

@@ -8,8 +8,14 @@
     # Neovim plugins
 
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
+
     tree-sitter-just = {
       url = "github:IndianBoy42/tree-sitter-just";
+      flake = false;
+    };
+
+    detour = {
+      url = "github:carbon-steel/detour.nvim";
       flake = false;
     };
 
@@ -154,6 +160,11 @@
               vimPlugins =
                 prev.vimPlugins
                 // {
+                  detour = prev.vimUtils.buildVimPlugin {
+                    name = baseNameOf inputs.detour;
+                    src = inputs.detour;
+                  };
+
                   tree-sitter-just = prev.vimUtils.buildVimPlugin {
                     name = baseNameOf inputs.tree-sitter-just;
                     src = inputs.tree-sitter-just;
