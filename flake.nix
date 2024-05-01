@@ -95,7 +95,9 @@
     };
 
     git-worktree-nvim = {
-      url = "github:ThePrimeagen/git-worktree.nvim";
+      # HACK: temporary fix to support telescope@0.1.6
+      url = "github:awerebea/git-worktree.nvim?ref=handle_changes_in_telescope_api";
+      # url = "github:ThePrimeagen/git-worktree.nvim";
       flake = false;
     };
 
