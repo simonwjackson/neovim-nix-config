@@ -2,11 +2,11 @@
     <img src="./.github/assets/logo.jpg" width="300px"/>
 </h3>
 <h1 align="center">
-    neovim-nix-config ｜ My neovim config, packaged as a <a href="https://nixos.org">Nix</a> flake 
+    neovim-nix-config | My neovim config, packaged as a <a href="https://nixos.org">Nix</a> flake 
 </h1>
 
 <div align="center">
-    <img alt="Static Badge" src="https://img.shields.io/badge/nixokgs-unstable-d2a8ff?style=for-the-badge&logo=NixOS&logoColor=cba6f7&labelColor=161B22">
+    <img alt="Static Badge" src="https://img.shields.io/badge/nixpkgs-unstable-d2a8ff?style=for-the-badge&logo=NixOS&logoColor=cba6f7&labelColor=161B22">
     <img alt="Static Badge" src="https://img.shields.io/badge/State-Forever_WIP-ff7b72?style=for-the-badge&logo=fireship&logoColor=ff7b72&labelColor=161B22">
     <a href="https://github.com/simonwjackson/neovim-nix-config/pulse">
       <img alt="Last commit" src="https://img.shields.io/github/last-commit/simonwjackson/neovim-nix-config?style=for-the-badge&logo=github&logoColor=D9E0EE&labelColor=302D41&color=9fdf9f"/>
