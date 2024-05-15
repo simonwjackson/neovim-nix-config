@@ -67,6 +67,16 @@ return {
 		init = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
+			local ls = require("luasnip")
+
+			require("luasnip.loaders.from_snipmate").lazy_load({ paths = os.getenv("LUASNIP_SNIPPETS") })
+
+			vim.keymap.set({ "i", "s" }, "<C-j>", function()
+				ls.jump(1)
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-k>", function()
+				ls.jump(-1)
+			end, { silent = true })
 
 			vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

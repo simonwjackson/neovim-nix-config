@@ -22,6 +22,15 @@
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.vimdoc])).dependencies
     ];
   };
+  snippets = pkgs.stdenv.mkDerivation {
+    name = "snippets";
+    src = ./snippets;
+
+    installPhase = ''
+      mkdir -p $out
+      cp -r $src/* $out/
+    '';
+  };
   neovimConfig = pkgs.runCommandNoCC "neovimConfig" {} ''
     mkdir -p $out/nvim/lua
     cat ${self}/config/init.lua > $out/nvim/init.lua
@@ -49,12 +58,12 @@ in
 
     export VISUAL="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
     export EDITOR="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
+    export LUASNIP_SNIPPETS="${snippets}"
 
     ${pkgs.lib.getExe neovim} \
       --clean \
       --cmd 'set rtp+=${neovimConfig}/nvim/' \
+      --cmd 'set config=${neovimConfig}/nvim' \
       -u ${neovimConfig}/nvim/init.lua \
       "$@"
   ''
-#
-
