@@ -63,7 +63,6 @@ in
     ${pkgs.lib.getExe neovim} \
       --clean \
       --cmd 'set rtp+=${neovimConfig}/nvim/' \
-      --cmd 'set config=${neovimConfig}/nvim' \
       -u ${neovimConfig}/nvim/init.lua \
       "$@"
   ''
