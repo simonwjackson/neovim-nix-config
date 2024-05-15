@@ -24,40 +24,53 @@ return {
 			require("lspconfig").lua_ls.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").tsserver.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").yamlls.setup({
 				capabilities = capabilities,
 			})
+
 			vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])
+
 			require("lspconfig").jqls.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").jsonls.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").html.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").htmx.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").nixd.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").bashls.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").cssls.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").tailwindcss.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").elmls.setup({
 				capabilities = capabilities,
 			})
+
 			require("lspconfig").eslint.setup({
 				capabilities = capabilities,
 				on_attach = function(client, bufnr)

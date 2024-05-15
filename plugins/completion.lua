@@ -11,7 +11,6 @@ return {
 				name = "cmp_luasnip",
 				dir = "@cmpLuaSnip@",
 			},
-
 			{
 				dir = "@cmpNvimLsp@",
 				name = "cmp-nvim-lsp",
@@ -105,6 +104,7 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
+					{ name = "luasnip" },
 					{ name = "nvim_lsp_signature_help", group_index = 2 },
 					{ name = "nvim_lsp", group_index = 2 },
 					{ name = "treesitter", group_index = 2 },
