@@ -6,7 +6,7 @@ snippet module "Module template"
 		pkgs,
 		...
 	}: let
-		inherit (lib) mkEnableOption;
+		inherit (lib) mkEnableOption mkOption;
 
 		cfg = config.mountainous.${1:NAME};
 	in {
@@ -20,22 +20,22 @@ snippet module "Module template"
 	}
 
 snippet mkDefault 
-	mkDefault = ${1:value};
+	mkDefault ${1:value};
 
 snippet mkForce 
-	mkForce = ${1:value};
+	mkForce ${1:value};
 
 snippet mkIf 
-	mkIf = ${1:condition} ${2:value};
+	mkIf ${1:condition} ${2:value};
 
 snippet mkMerge 
-	mkMerge = [
+	mkMerge [
 		${1:value1}
 		${2:value2}
 	];
 
 snippet mkOption 
-	mkOption = {
+	mkOption {
 		type = ${1:type};
 		default = ${2:default};
 		description = "$3";
