@@ -2,7 +2,7 @@
     <img src="./.github/assets/icho.jpg" width="300px"/>
 </h3>
 <h1 align="center">
-    icho | My neovim config, packaged as a <a href="https://nixos.org">Nix</a> flake 
+    icho | A bespoke neovim workspace. Powered by <a href="https://neovim.io/doc/user/lua.html">lua</a> and <a href="https://nixos.org">nix</a>.
 </h1>
 
 <div align="center">
