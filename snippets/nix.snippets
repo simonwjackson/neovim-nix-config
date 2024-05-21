@@ -8,7 +8,7 @@ snippet module "Module template"
 	}: let
 		inherit (lib) mkEnableOption mkOption;
 
-		cfg = config.mountainous.${1:NAME};
+		cfg = config.mountainous.${1:name};
 	in {
 		options.mountainous.$1 = {
 			enable = mkEnableOption "Whether to enable $1";
@@ -38,8 +38,7 @@ snippet mkOption
 	mkOption {
 		type = ${1:type};
 		default = ${2:default};
-		description = "$3";
-		$0
+		description = "$0";
 	};
 
 snippet mkEnableOption 
