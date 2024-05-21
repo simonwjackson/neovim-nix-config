@@ -2,17 +2,17 @@
     <img src="./.github/assets/logo.jpg" width="300px"/>
 </h3>
 <h1 align="center">
-    neovim-nix-config | My neovim config, packaged as a <a href="https://nixos.org">Nix</a> flake 
+    icho | My neovim config, packaged as a <a href="https://nixos.org">Nix</a> flake 
 </h1>
 
 <div align="center">
     <img alt="Static Badge" src="https://img.shields.io/badge/nixpkgs-unstable-d2a8ff?style=for-the-badge&logo=NixOS&logoColor=cba6f7&labelColor=161B22">
     <img alt="Static Badge" src="https://img.shields.io/badge/State-Forever_WIP-ff7b72?style=for-the-badge&logo=fireship&logoColor=ff7b72&labelColor=161B22">
-    <a href="https://github.com/simonwjackson/neovim-nix-config/pulse">
-      <img alt="Last commit" src="https://img.shields.io/github/last-commit/simonwjackson/neovim-nix-config?style=for-the-badge&logo=github&logoColor=D9E0EE&labelColor=302D41&color=9fdf9f"/>
+    <a href="https://github.com/simonwjackson/icho/pulse">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/simonwjackson/icho?style=for-the-badge&logo=github&logoColor=D9E0EE&labelColor=302D41&color=9fdf9f"/>
     </a>
     <img alt="Static Badge" src="https://img.shields.io/badge/Powered_by-Endless_nights-79c0ff?style=for-the-badge&logo=nuke&logoColor=79c0ff&labelColor=161B22">
-    <a href="https://github.com/simonwjackson/neovim-nix-config/tree/main/LICENSE">
+    <a href="https://github.com/simonwjackson/icho/tree/main/LICENSE">
       <img alt="License" src="https://img.shields.io/badge/License-MIT-907385605422448742?style=for-the-badge&logo=agpl&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41">
     </a>
     <a href="https://www.buymeacoffee.com/simonwjackson">
@@ -45,7 +45,7 @@ nix run .#
 or
 
 ```
-nix run github:simonwjackson/neovim-nix-config
+nix run github:simonwjackson/icho
 ```
 
 ## Plugin Updates
