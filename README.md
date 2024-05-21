@@ -26,7 +26,7 @@
 
 * Impermanace (mostly). Plugins can be added to `flake.nix`.
 * Uses `lazy.nvim` for lazy plugin loading.
-* All vim plugins in the flake.nix file) are updated daily @ 8:00am UTC
+* All runtime dependencies (plugins, LSPs, etc) are updated daily @ 8:00am UTC
 
 Welcome to my Neovim configuration crafted for Nix.
 Feel free to use it as is or extract pieces to help construct your own unique setup.
