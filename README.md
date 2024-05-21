@@ -1,5 +1,5 @@
 <h3 align="center">
-    <img src="./.github/assets/logo.jpg" width="300px"/>
+    <img src="./.github/assets/icho.jpg" width="300px"/>
 </h3>
 <h1 align="center">
     icho | My neovim config, packaged as a <a href="https://nixos.org">Nix</a> flake 
