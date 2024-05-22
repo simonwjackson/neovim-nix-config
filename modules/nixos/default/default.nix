@@ -7,12 +7,13 @@
   inherit (pkgs.stdenv.hostPlatform) system;
 
   cfg = config.programs.icho;
+  nvim = lib.getExe pkgs.neovim;
   # package = self.packages.${system}.default;
 
   neovimWrapped = pkgs.writeShellScriptBin "nvim" ''
     export ${lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "${name}=${value}") cfg.environment)}
     ${lib.concatMapStringsSep "\n" (file: "source ${file}") cfg.environmentFiles}
-    exec ${cfg.package}/bin/nvim "$@"
+    exec ${nvim} "$@"
   '';
 in {
   options.programs.icho = {
