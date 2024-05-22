@@ -1,4 +1,4 @@
-inputs: {
+{
   config,
   lib,
   pkgs,
@@ -7,9 +7,9 @@ inputs: {
   inherit (pkgs.stdenv.hostPlatform) system;
 
   cfg = config.programs.myNeovim;
-  package = inputs.self.packages.${system}.default;
+  # package = self.packages.${system}.default;
 
-  neovimWrapper = pkgs.writeShellScriptBin "nvim" ''
+  neovimWrapped = pkgs.writeShellScriptBin "nvim" ''
     export ${lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "${name}=${value}") cfg.environment)}
     ${lib.concatMapStringsSep "\n" (file: "source ${file}") cfg.environmentFiles}
     exec ${cfg.package}/bin/nvim "$@"
@@ -18,17 +18,11 @@ in {
   options.programs.myNeovim = {
     enable = lib.mkEnableOption "My custom Neovim configuration";
 
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = package;
-      description = "The Neovim package to use.";
-    };
-
-    users = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [];
-      description = "List of users who should have the Neovim package added to their packages.";
-    };
+    # package = lib.mkOption {
+    #   type = lib.types.package;
+    #   default = package;
+    #   description = "The Neovim package to use.";
+    # };
 
     environment = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
@@ -44,14 +38,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = lib.mkIf (cfg.users == []) [
-      neovimWrapper
+    environment.systemPackages = lib.mkIf [
+      neovimWrapped
     ];
-
-    users.users = lib.genAttrs cfg.users (user: {
-      packages = [
-        neovimWrapper
-      ];
-    });
   };
 }
