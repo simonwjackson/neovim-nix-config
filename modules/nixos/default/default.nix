@@ -2,18 +2,19 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
 
+  pname = "icho";
   cfg = config.programs.icho;
-  nvim = lib.getExe pkgs.neovim;
-  # package = self.packages.${system}.default;
+  package = inputs.self.packages.${system}.default;
 
   neovimWrapped = pkgs.writeShellScriptBin "nvim" ''
     export ${lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "${name}=${value}") cfg.environment)}
     ${lib.concatMapStringsSep "\n" (file: "source ${file}") cfg.environmentFiles}
-    exec ${nvim} "$@"
+    exec ${package}/bin/nvim "$@"
   '';
 in {
   options.programs.icho = {
