@@ -15,7 +15,7 @@ pkgs.testers.runNixOSTest {
       self.nixosModules.default
     ];
 
-    programs.myNeovim.enable = true;
+    programs.icho.enable = true;
 
     users.users.alice = {
       isNormalUser = true;

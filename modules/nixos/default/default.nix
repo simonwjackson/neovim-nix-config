@@ -6,7 +6,7 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
 
-  cfg = config.programs.myNeovim;
+  cfg = config.programs.icho;
   # package = self.packages.${system}.default;
 
   neovimWrapped = pkgs.writeShellScriptBin "nvim" ''
@@ -15,7 +15,7 @@
     exec ${cfg.package}/bin/nvim "$@"
   '';
 in {
-  options.programs.myNeovim = {
+  options.programs.icho = {
     enable = lib.mkEnableOption "My custom Neovim configuration";
 
     # package = lib.mkOption {
@@ -38,7 +38,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = lib.mkIf [
+    environment.systemPackages = [
       neovimWrapped
     ];
   };
