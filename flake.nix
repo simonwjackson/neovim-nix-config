@@ -1,9 +1,17 @@
 {
-  description = "My own Neovim flake with plugins";
+  description = "A bespoke neovim workspace. Powered by lua and nix.";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snowfall-frost = {
+      url = "github:snowfallorg/frost";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Neovim plugins
 
@@ -142,172 +150,44 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    ...
-  } @ inputs:
-    {
-      nixosModules.default = import ./module.nix inputs;
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
+    };
+  in
+    lib.mkFlake {
+      overlays = [
+        inputs.awesome-neovim-plugins.overlays.default
+      ];
+
+      channels-config = {
+        allowUnfree = true;
+      };
+
+      snowfall = {
+        namespace = "icho";
+
+        meta = {
+          name = "icho";
+          title = "icho";
+        };
+      };
+
+      alias = {
+        packages = {
+          default = "icho";
+        };
+      };
     }
-    // flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            inputs.awesome-neovim-plugins.overlays.default
-            # inputs.neovim-nightly-overlay.overlay
-            (final: prev: {
-              vimPlugins =
-                prev.vimPlugins
-                // {
-                  detour = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.detour;
-                    src = inputs.detour;
-                  };
-
-                  tree-sitter-just = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.tree-sitter-just;
-                    src = inputs.tree-sitter-just;
-                  };
-
-                  vim-dadbod-ui = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-dadbod-ui;
-                    src = inputs.vim-dadbod-ui;
-                  };
-
-                  vim-dadbod = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-dadbod;
-                    src = inputs.vim-dadbod;
-                  };
-
-                  middleclass = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.middleclass;
-                    src = inputs.middleclass;
-                  };
-
-                  vim-visual-star-search = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-visual-star-search;
-                    src = inputs.vim-visual-star-search;
-                  };
-
-                  vim-expand-region = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-expand-region;
-                    src = inputs.vim-expand-region;
-                  };
-
-                  cmp_luasnip = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp_luasnip;
-                    src = inputs.cmp_luasnip;
-                  };
-
-                  cmp-nvim-lsp = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-nvim-lsp;
-                    src = inputs.cmp-nvim-lsp;
-                  };
-
-                  cmp-nvim-lua = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-nvim-lua;
-                    src = inputs.cmp-nvim-lua;
-                  };
-
-                  cmp-buffer = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-buffer;
-                    src = inputs.cmp-buffer;
-                  };
-
-                  cmp-path = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-path;
-                    src = inputs.cmp-path;
-                  };
-
-                  cmp-cmdline = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-cmdline;
-                    src = inputs.cmp-cmdline;
-                  };
-
-                  cmp-nvim-lsp-signature-help = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-nvim-lsp-signature-help;
-                    src = inputs.cmp-nvim-lsp-signature-help;
-                  };
-
-                  cmp-treesitter = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-treesitter;
-                    src = inputs.cmp-treesitter;
-                  };
-
-                  cmp-spell = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-spell;
-                    src = inputs.cmp-spell;
-                  };
-
-                  cmp-emoji = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-emoji;
-                    src = inputs.cmp-emoji;
-                  };
-
-                  cmp-calc = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-calc;
-                    src = inputs.cmp-calc;
-                  };
-
-                  cmp-npm = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.cmp-npm;
-                    src = inputs.cmp-npm;
-                  };
-
-                  vim-dadbod-completion = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-dadbod-completion;
-                    src = inputs.vim-dadbod-completion;
-                  };
-
-                  fd = prev.buildPackages.fd;
-
-                  ripgrep = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.ripgrep;
-                    src = inputs.ripgrep;
-                  };
-
-                  vim-highlightedyank = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.vim-highlightedyank;
-                    src = inputs.vim-highlightedyank;
-                  };
-
-                  ###
-
-                  lspkind-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.lspkind-nvim;
-                    src = inputs.lspkind-nvim;
-                  };
-
-                  git-worktree-nvim = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.git-worktree-nvim;
-                    src = inputs.git-worktree-nvim;
-                  };
-
-                  nvim-osc52 = prev.vimUtils.buildVimPlugin {
-                    name = baseNameOf inputs.nvim-osc52;
-                    src = inputs.nvim-osc52;
-                  };
-                };
-            })
-          ];
-        };
-
-        neovimWrapped = pkgs.callPackage ./neovimWrapped.nix {
-          inherit pkgs self;
-        };
-      in {
-        checks = {
-          system-wide = pkgs.callPackage ./nixosModuleTest-system-wide.nix {
-            inherit pkgs self;
-          };
-          single-user = pkgs.callPackage ./nixosModuleTest-single-user.nix {
-            inherit pkgs self;
-          };
-        };
-        packages.default = neovimWrapped;
-      }
-    );
+    // {
+      checks = {
+        # system-wide = pkgs.callPackage ./tests/nixosModuleTest-system-wide.nix {
+        #   inherit pkgs;
+        # };
+        # single-user = pkgs.callPackage ./tests/nixosModuleTest-single-user.nix {
+        #   inherit pkgs;
+        # };
+      };
+    };
 }

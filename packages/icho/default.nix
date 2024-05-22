@@ -1,8 +1,9 @@
 {
   pkgs,
-  self,
-  neovim ? pkgs.neovim-unwrapped,
+  root,
+  ...
 }: let
+  nvim = pkgs.lib.getExe pkgs.neovim;
   plugins = pkgs.callPackage ./plugins.nix {};
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
@@ -24,7 +25,7 @@
   };
   snippets = pkgs.stdenv.mkDerivation {
     name = "snippets";
-    src = ./snippets;
+    src = ../../snippets;
 
     installPhase = ''
       mkdir -p $out
@@ -33,7 +34,7 @@
   };
   neovimConfig = pkgs.runCommandNoCC "neovimConfig" {} ''
     mkdir -p $out/nvim/lua
-    cat ${self}/config/init.lua > $out/nvim/init.lua
+    cat ${../..}/config/init.lua > $out/nvim/init.lua
 
     cat >> $out/nvim/init.lua <<EOF
       vim.opt.rtp:prepend("${pkgs.awesomeNeovimPlugins.lazy-nvim}")
@@ -60,7 +61,7 @@ in
     export EDITOR="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
     export LUASNIP_SNIPPETS="${snippets}"
 
-    ${pkgs.lib.getExe neovim} \
+    ${nvim} \
       --clean \
       --cmd 'set rtp+=${neovimConfig}/nvim/' \
       -u ${neovimConfig}/nvim/init.lua \

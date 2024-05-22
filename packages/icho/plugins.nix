@@ -1,6 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  pluginDir ? ./plugins,
+  pluginDir ? ../../plugins,
 }: let
   pluginFiles = builtins.readDir pluginDir;
   luaFiles =

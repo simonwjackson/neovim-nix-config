@@ -1,5 +1,5 @@
 {pkgs ? import <nixpkgs> {}}: let
-  subfolder = ./plugins;
+  subfolder = ../../plugins;
   nixFiles =
     builtins.filter (fileName: builtins.match ".*\.nix" fileName != null)
     (builtins.attrNames (builtins.readDir subfolder));
