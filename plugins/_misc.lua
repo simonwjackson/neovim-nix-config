@@ -1216,7 +1216,7 @@ return {
 				pattern = "*.md,*.markdown", -- Pattern to match Markdown files
 				callback = function()
 					vim.cmd("TWSyncTasks")
-					vim.cmd("TWQueryTasks")
+					-- vim.cmd("TWQueryTasks")
 				end,
 			})
 		end,
