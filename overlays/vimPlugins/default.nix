@@ -15,6 +15,7 @@
   detour,
   git-worktree-nvim,
   lspkind-nvim,
+  m_taskwarriror_d,
   middleclass,
   nvim-osc52,
   ripgrep,
@@ -30,6 +31,11 @@
   vimPlugins =
     prev.vimPlugins
     // {
+      m_taskwarriror_d = prev.vimUtils.buildVimPlugin {
+        name = baseNameOf m_taskwarriror_d;
+        src = m_taskwarriror_d;
+      };
+
       detour = prev.vimUtils.buildVimPlugin {
         name = baseNameOf detour;
         src = detour;

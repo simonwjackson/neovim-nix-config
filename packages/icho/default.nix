@@ -1,8 +1,10 @@
 {
+  lib,
   pkgs,
   root,
   ...
 }: let
+  nvr = lib.getExe pkgs.neovim-remote;
   nvim = pkgs.lib.getExe pkgs.neovim;
   plugins = pkgs.callPackage ./plugins.nix {};
   treesitter-parsers = pkgs.symlinkJoin {
@@ -57,8 +59,7 @@ in
     ${import ./get-env-vars.nix {inherit pkgs;}}
     ${import ./get-env-files.nix {inherit pkgs;}}
 
-    export VISUAL="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
-    export EDITOR="${pkgs.neovim-remote} -cc split --remote-wait +'set bufhidden=wipe'"
+    export VISUAL="${nvr} -cc split --remote-wait +'set bufhidden=wipe'"
     export LUASNIP_SNIPPETS="${snippets}"
 
     ${nvim} \

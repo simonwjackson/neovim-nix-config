@@ -428,6 +428,22 @@
         "type": "github"
       }
     },
+    "m_taskwarriror_d": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716522552,
+        "narHash": "sha256-VIvPVaIX8fuuejabuAjqG8Y/EZENvrKawBD85LKaHlM=",
+        "owner": "simonwjackson",
+        "repo": "m_taskwarrior_d.nvim",
+        "rev": "877f04b472107668dafba3e816d1a2353fbf8e94",
+        "type": "github"
+      },
+      "original": {
+        "owner": "simonwjackson",
+        "repo": "m_taskwarrior_d.nvim",
+        "type": "github"
+      }
+    },
     "middleclass": {
       "flake": false,
       "locked": {
@@ -564,6 +580,7 @@
         "fd": "fd",
         "git-worktree-nvim": "git-worktree-nvim",
         "lspkind-nvim": "lspkind-nvim",
+        "m_taskwarriror_d": "m_taskwarriror_d",
         "middleclass": "middleclass",
         "nixpkgs": "nixpkgs_2",
         "nvim-osc52": "nvim-osc52",

@@ -17,6 +17,11 @@
 
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
 
+    m_taskwarriror_d = {
+      url = "github:simonwjackson/m_taskwarrior_d.nvim";
+      flake = false;
+    };
+
     tree-sitter-just = {
       url = "github:IndianBoy42/tree-sitter-just";
       flake = false;

@@ -1166,4 +1166,59 @@ return {
 		name = "highlightedyank",
 		dir = "@vimHighlightedyank@",
 	},
+	{
+		name = "m_taskwarrior_d",
+		dir = "@mTaskwarriorD@",
+		ft = "markdown",
+		dependencies = {
+			{
+				name = "nui",
+				dir = "@nui@",
+			},
+			{
+				name = "nvim-treesitter",
+				dir = "@nvimTreesitter@",
+			},
+		},
+		keys = {
+			{
+				"<leader>ae",
+				"<cmd>TWRunWithCurrent<cr>",
+				desc = "Edit current task",
+			},
+		},
+		init = function()
+			require("m_taskwarrior_d").setup({
+				ui = {
+					checkboxes = {
+						[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+						["x"] = { char = "", hl_group = "ObsidianDone" },
+						[">"] = { char = "", hl_group = "ObsidianRightArrow" },
+						["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+					},
+					hl_groups = {
+						ObsidianTodo = { bold = true, fg = "#f78c6c" },
+						ObsidianDone = { bold = true, fg = "#89ddff" },
+						ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
+						ObsidianTilde = { bold = true, fg = "#ff5370" },
+						ObsidianBullet = { bold = true, fg = "#89ddff" },
+						ObsidianRefText = { underline = true, fg = "#008080" },
+						ObsidianExtLinkIcon = { fg = "#008080" },
+						ObsidianTag = { italic = true, fg = "#89ddff" },
+						ObsidianHighlightText = { bg = "#75662e" },
+					},
+				},
+			})
+			-- Optional
+			-- Be caution: it may be slow to open large files, because it scan the whole buffer
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+				group = vim.api.nvim_create_augroup("TWTask", { clear = true }),
+				pattern = "*.md,*.markdown", -- Pattern to match Markdown files
+				callback = function()
+					vim.cmd("TWSyncTasks")
+					vim.cmd("TWQueryTasks")
+				end,
+			})
+		end,
+	},
 }

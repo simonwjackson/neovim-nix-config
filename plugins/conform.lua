@@ -27,7 +27,7 @@ return {
 				html = { "prettierd" },
 				json = { "jq" },
 				yaml = { "yq" },
-				markdown = { "prettierd" },
+				-- markdown = { "prettierd" },
 				just = { "just" },
 				-- # TODO: Add tailwind
 				-- rustywind
