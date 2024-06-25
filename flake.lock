@@ -7,11 +7,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1719163182,
-        "narHash": "sha256-IS6XXkezp2iYbg8JdZQKoeLDHIWPYgNMugZ3ap9D47M=",
+        "lastModified": 1719249689,
+        "narHash": "sha256-6jALmHvkNz8/rRd6mSzgbHqiTWkmaZ7I1EDsMl3ysvk=",
         "owner": "m15a",
         "repo": "flake-awesome-neovim-plugins",
-        "rev": "8fce970a5ea62b18e7ff7beab17433aa4e4b2860",
+        "rev": "5535d5a481227cf0ef94a6fd5757ed613830ff4d",
         "type": "github"
       },
       "original": {
@@ -714,11 +714,11 @@
     "tree-sitter-just": {
       "flake": false,
       "locked": {
-        "lastModified": 1714632960,
-        "narHash": "sha256-yuTcgNfF4oRNZkwwFpt5WLpWtTvgJJRDYo3CWnCNyiU=",
+        "lastModified": 1719279247,
+        "narHash": "sha256-rJXgKNYnAjpAh+1dfYH9W6v5t457ROLtjqU3ndzvjr8=",
         "owner": "IndianBoy42",
         "repo": "tree-sitter-just",
-        "rev": "fd814fc6c579f68c2a642f5e0268cf69daae92d7",
+        "rev": "379fbe36d1e441bc9414ea050ad0c85c9d6935ea",
         "type": "github"
       },
       "original": {
@@ -778,11 +778,11 @@
     "vim-dadbod-ui": {
       "flake": false,
       "locked": {
-        "lastModified": 1718864351,
-        "narHash": "sha256-BkBbMNpq4b/Ajv8s5rQpYFjJ6kFtPr1jgmpSmW4y2y0=",
+        "lastModified": 1719226120,
+        "narHash": "sha256-ebXrC7jN7ahmDGVwtK9SJp8AEvfAZeCSeGWAq+7H8pc=",
         "owner": "kristijanhusak",
         "repo": "vim-dadbod-ui",
-        "rev": "a95d8b61b3f9102f566462fc50781e3e7c769232",
+        "rev": "2527310098e7458488e61a528614da142aa2dc42",
         "type": "github"
       },
       "original": {
